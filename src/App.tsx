@@ -84,7 +84,7 @@ function App() {
           <span className="signal-ring signal-ring-three" />
         </motion.div>
 
-        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col px-5 py-5 sm:px-8 sm:py-7 lg:px-10 xl:px-8">
+        <div className="hero-shell relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col px-5 py-5 sm:px-8 sm:py-7 lg:px-10 xl:px-8">
           <SiteHeader language={language} onLanguageChange={setLanguage} />
 
           <div className="mt-7 flex items-center justify-between gap-6 border-t border-white/15 pt-4 text-[10px] font-medium uppercase tracking-[0.18em] text-white/45 sm:mt-9 sm:text-xs">
@@ -111,7 +111,7 @@ function App() {
                 className={`max-w-[1050px] font-medium ${
                   language === 'zh'
                     ? 'text-[clamp(3.9rem,10.5vw,9.2rem)] leading-[0.9] tracking-[-0.07em]'
-                    : 'text-[clamp(4.15rem,11.7vw,10.2rem)] leading-[0.77] tracking-[-0.075em]'
+                    : 'text-[clamp(3.25rem,16.6vw,4.15rem)] leading-[0.77] tracking-[-0.075em] sm:text-[clamp(4.15rem,11.7vw,10.2rem)] lg:text-[clamp(5.5rem,10.5vw,9.2rem)] xl:text-[clamp(4.15rem,11.5vw,10rem)]'
                 }`}
               >
                 {copy.hero.lines.map((line, index) => (
@@ -158,7 +158,7 @@ function App() {
         </div>
       </section>
 
-      <section id="about" className="relative scroll-mt-0 overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+      <section id="about" className="relative scroll-mt-0 overflow-hidden px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
         <motion.div
           className="ambient-orb pointer-events-none absolute -right-44 top-20 h-[480px] w-[480px] rounded-full bg-[#6d79ff]/10 blur-[95px]"
           style={{ y: shouldReduceMotion ? 0 : aboutOrbY }}
@@ -207,7 +207,7 @@ function App() {
         </motion.div>
       </section>
 
-      <section id="ecosystem" className="scroll-mt-0 bg-[#090909] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-36">
+      <section id="ecosystem" className="scroll-mt-0 bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-36">
         <div className="mx-auto max-w-7xl">
           <div className="grid min-w-0 gap-8 lg:grid-cols-2 lg:items-end">
             <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-white/42">
@@ -257,6 +257,8 @@ function App() {
                     src="/pulse-logo-official.png"
                     alt="Pulse"
                     className="w-[118px] object-contain sm:w-[132px]"
+                    loading="lazy"
+                    decoding="async"
                     draggable="false"
                   />
                   <p className="mt-5 text-base leading-relaxed text-white/72">
@@ -266,7 +268,7 @@ function App() {
                     href={PULSE_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="pulse-cta group mt-8 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
+                    className="pulse-cta group mt-8 inline-flex min-h-11 items-center gap-3 rounded-full bg-white px-5 py-3.5 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
                   >
                     {copy.experiencePulse}
                     <ExternalArrow />
@@ -292,6 +294,8 @@ function App() {
                     src="/pheno-logo-official.png"
                     alt="Pheno"
                     className="h-auto w-[240px] max-w-full object-contain sm:w-[270px]"
+                    loading="lazy"
+                    decoding="async"
                     draggable="false"
                   />
                   <p className="mt-5 text-base leading-relaxed text-black/58">
@@ -301,7 +305,7 @@ function App() {
                     href={PHENO_PORTAL_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="group mt-8 inline-flex items-center gap-3 border-b border-black/30 pb-1 text-sm font-medium text-black transition-colors hover:border-black"
+                    className="group mt-5 inline-flex min-h-11 items-center gap-3 border-b border-black/30 py-3 text-sm font-medium text-black transition-colors hover:border-black"
                   >
                     {copy.ecosystem.phenoPortal}
                     <ExternalArrow />
@@ -313,7 +317,7 @@ function App() {
         </div>
       </section>
 
-      <section id="culture" className="relative scroll-mt-0 overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+      <section id="culture" className="relative scroll-mt-0 overflow-hidden px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
         <motion.div
           className="ambient-orb pointer-events-none absolute -left-52 top-24 h-[560px] w-[560px] rounded-full bg-[#8290ff]/9 blur-[115px]"
           style={{ y: shouldReduceMotion ? 0 : cultureOrbY }}
@@ -325,7 +329,7 @@ function App() {
               <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-black/42">
                 {copy.culture.label}
               </FadeUp>
-              <FadeUp as="h2" y={30} className="mt-6 max-w-xl text-5xl font-medium leading-[0.96] tracking-[-0.05em] sm:text-7xl">
+              <FadeUp as="h2" y={30} className="mt-6 max-w-xl text-[clamp(2.65rem,13vw,3rem)] font-medium leading-[0.96] tracking-[-0.05em] sm:text-7xl">
                 {copy.culture.title}
               </FadeUp>
             </div>
@@ -336,7 +340,7 @@ function App() {
 
           <div className="mt-16 grid min-w-0 gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
             {copy.culture.values.map((value, index) => (
-              <FadeUp key={value.title} delay={(index % 4) * 0.05} y={46} scale={0.95} blur={8} className="relative min-w-0 border-t border-black/15 py-8 lg:min-h-[230px]">
+              <FadeUp key={value.title} delay={(index % 4) * 0.05} y={46} scale={0.95} blur={8} className="relative min-w-0 border-t border-black/15 py-7 sm:py-8 lg:min-h-[230px]">
                 <motion.span
                   className="absolute left-0 top-[-1px] h-[2px] w-full origin-left bg-[linear-gradient(90deg,#5967ff_0%,rgba(89,103,255,0.08)_100%)]"
                   initial={shouldReduceMotion ? false : { scaleX: 0 }}
@@ -346,7 +350,7 @@ function App() {
                   aria-hidden="true"
                 />
                 <span className="text-xs text-black/35">{String(index + 1).padStart(2, '0')}</span>
-                <h3 className="mt-9 text-xl font-medium tracking-[-0.025em]">{value.title}</h3>
+                <h3 className="mt-6 text-xl font-medium tracking-[-0.025em] sm:mt-9">{value.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-black/52">{value.body}</p>
               </FadeUp>
             ))}
@@ -354,7 +358,7 @@ function App() {
         </div>
       </section>
 
-      <section id="pulse" className="relative scroll-mt-0 overflow-hidden bg-[#111318] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+      <section id="pulse" className="relative scroll-mt-0 overflow-hidden bg-[#111318] px-5 py-20 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-40">
         <motion.div
           className="ambient-orb pointer-events-none absolute -right-48 top-20 h-[680px] w-[680px] rounded-full bg-[#4d5bff]/18 blur-[120px]"
           style={{ y: shouldReduceMotion ? 0 : pulseOrbY }}
@@ -368,13 +372,15 @@ function App() {
                 alt=""
                 className="w-[94px] object-contain sm:w-[112px]"
                 aria-hidden="true"
+                loading="lazy"
+                decoding="async"
                 draggable="false"
               />
             </FadeUp>
             <FadeUp as="p" className="text-xs font-semibold uppercase tracking-[0.28em] text-[#aab3ff]">
               PULSE
             </FadeUp>
-            <FadeUp as="h2" y={30} className="mt-6 max-w-5xl text-5xl font-medium leading-[0.92] tracking-[-0.055em] sm:text-7xl">
+            <FadeUp as="h2" y={30} className="mt-6 max-w-5xl text-[clamp(2.65rem,13vw,3rem)] font-medium leading-[0.92] tracking-[-0.055em] sm:text-7xl">
               Make Knowledge Count.
             </FadeUp>
             <FadeUp as="p" delay={0.1} className="mt-10 max-w-3xl text-base leading-relaxed text-white/62 sm:text-lg sm:leading-relaxed">
@@ -417,7 +423,7 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-36" aria-labelledby="learning-loop-title">
+      <section className="bg-white px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-36" aria-labelledby="learning-loop-title">
         <div className="mx-auto max-w-7xl">
           <div className="flex min-w-0 items-end justify-between gap-8">
             <div className="min-w-0">
@@ -431,7 +437,7 @@ function App() {
             <ArrowDownRight className="hidden h-12 w-12 shrink-0 text-black/25 sm:block" aria-hidden="true" />
           </div>
 
-          <div className="relative mt-16 grid min-w-0 border-t border-black/20 md:grid-cols-5">
+          <div className="relative mt-16 grid min-w-0 border-t border-black/20 md:grid-cols-2 lg:grid-cols-5">
             <motion.div
               className="absolute left-0 top-[-2px] z-10 h-[3px] w-full origin-left bg-[linear-gradient(90deg,#5967ff_0%,#aab3ff_52%,rgba(170,179,255,0.12)_100%)] shadow-[0_0_18px_rgba(89,103,255,0.22)]"
               initial={shouldReduceMotion ? false : { scaleX: 0 }}
@@ -441,7 +447,18 @@ function App() {
               aria-hidden="true"
             />
             {copy.learning.steps.map((step, index) => (
-              <FadeUp key={step.title} delay={0.12 + index * 0.08} y={50} scale={0.95} blur={8} className="min-w-0 border-b border-black/15 py-8 md:min-h-[240px] md:border-b-0 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
+              <FadeUp
+                key={step.title}
+                delay={0.12 + index * 0.08}
+                y={50}
+                scale={0.95}
+                blur={8}
+                className={`min-w-0 border-b border-black/15 py-7 sm:py-8 md:min-h-[220px] md:border-r md:px-5 md:last:border-r-0 ${
+                  index % 2 === 0 ? 'md:pl-0' : 'md:border-r-0 md:pr-0'
+                } lg:min-h-[240px] lg:border-b-0 lg:border-r lg:px-5 ${
+                  index === 0 ? 'lg:pl-0' : ''
+                } ${index === copy.learning.steps.length - 1 ? 'lg:border-r-0 lg:pr-0' : ''}`}
+              >
                 <span className="inline-flex items-center gap-3 text-xs text-black/32">
                   <motion.span
                     className="h-2 w-2 rounded-full bg-[#5967ff] shadow-[0_0_14px_rgba(89,103,255,0.5)]"
@@ -453,7 +470,7 @@ function App() {
                   />
                   {step.number}
                 </span>
-                <h3 className="mt-14 text-2xl font-medium tracking-[-0.03em]">{step.title}</h3>
+                <h3 className="mt-8 text-2xl font-medium tracking-[-0.03em] sm:mt-10 md:mt-14">{step.title}</h3>
                 <p className="mt-4 max-w-[180px] text-sm leading-relaxed text-black/50">{step.body}</p>
               </FadeUp>
             ))}
@@ -461,7 +478,7 @@ function App() {
         </div>
       </section>
 
-      <section id="contact" className="closing-stage relative scroll-mt-0 overflow-hidden bg-black px-5 pb-8 pt-24 text-white sm:px-8 sm:pt-32 lg:px-10 lg:pt-40">
+      <section id="contact" className="closing-stage relative scroll-mt-0 overflow-hidden bg-black px-5 pb-8 pt-20 text-white sm:px-8 sm:pt-32 lg:px-10 lg:pt-40">
         <motion.div
           className="pointer-events-none absolute -left-44 top-20 h-[560px] w-[560px] rounded-full bg-[#5967ff]/18 blur-[120px]"
           initial={shouldReduceMotion ? false : { scale: 0.72, opacity: 0 }}
@@ -474,7 +491,7 @@ function App() {
           <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-white/38">
             {copy.closing.label}
           </FadeUp>
-          <FadeUp as="h2" y={30} className="mt-6 max-w-6xl text-5xl font-medium leading-[0.9] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
+          <FadeUp as="h2" y={30} className="mt-6 max-w-6xl text-[clamp(2.65rem,12.8vw,3rem)] font-medium leading-[0.9] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
             {copy.closing.title}
           </FadeUp>
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">

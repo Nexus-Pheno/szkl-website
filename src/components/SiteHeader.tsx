@@ -15,11 +15,11 @@ function Brand({ alt, homeLabel }: { alt: string; homeLabel: string }) {
       className="group inline-flex shrink-0 transition-opacity hover:opacity-80"
       aria-label={homeLabel}
     >
-      <span className="relative block h-12 w-[136px] overflow-hidden sm:h-16 sm:w-[210px]">
+      <span className="relative block h-12 w-[124px] overflow-hidden sm:h-16 sm:w-[210px]">
         <img
           src="/szkl-logo-official.png"
           alt={alt}
-          className="absolute left-1/2 top-1/2 w-[194px] max-w-none -translate-x-1/2 -translate-y-1/2 invert mix-blend-screen sm:w-[300px]"
+          className="absolute left-1/2 top-1/2 w-[178px] max-w-none -translate-x-1/2 -translate-y-1/2 invert mix-blend-screen sm:w-[300px]"
           draggable="false"
         />
       </span>
@@ -32,19 +32,19 @@ function LanguageToggle({ language, onLanguageChange }: SiteHeaderProps) {
 
   return (
     <div
-      className="relative grid h-10 w-[72px] grid-cols-2 rounded-full border border-white/20 bg-black/30 p-1 shadow-[0_14px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl"
+      className="relative grid h-11 w-[88px] grid-cols-2 rounded-full border border-white/20 bg-black/30 shadow-[0_14px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl"
       role="group"
       aria-label={copy.languageLabel}
     >
       <span
-        className={`pointer-events-none absolute left-1 top-1 h-8 w-8 rounded-full bg-white shadow-[0_5px_18px_rgba(0,0,0,0.25)] transition-transform duration-300 ease-out ${
-          language === 'zh' ? 'translate-x-8' : 'translate-x-0'
+        className={`pointer-events-none absolute left-0.5 top-0.5 h-10 w-10 rounded-full bg-white shadow-[0_5px_18px_rgba(0,0,0,0.25)] transition-transform duration-300 ease-out ${
+          language === 'zh' ? 'translate-x-11' : 'translate-x-0'
         }`}
         aria-hidden="true"
       />
       <button
         type="button"
-        className={`relative z-10 grid h-8 w-8 place-items-center rounded-full text-[10px] font-semibold tracking-[0.08em] transition-colors ${
+        className={`relative z-10 grid h-11 w-11 place-items-center rounded-full text-[10px] font-semibold tracking-[0.08em] transition-colors ${
           language === 'en' ? 'text-black' : 'text-white/58 hover:text-white'
         }`}
         onClick={() => onLanguageChange('en')}
@@ -56,7 +56,7 @@ function LanguageToggle({ language, onLanguageChange }: SiteHeaderProps) {
       </button>
       <button
         type="button"
-        className={`relative z-10 grid h-8 w-8 place-items-center rounded-full text-xs font-semibold transition-colors ${
+        className={`relative z-10 grid h-11 w-11 place-items-center rounded-full text-xs font-semibold transition-colors ${
           language === 'zh' ? 'text-black' : 'text-white/58 hover:text-white'
         }`}
         onClick={() => onLanguageChange('zh')}
@@ -76,18 +76,18 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
   const navigationLabel = language === 'zh' ? '主导航' : 'Main navigation';
 
   return (
-    <header className="relative z-50 grid grid-cols-[1fr_auto] items-center gap-2 sm:gap-4 lg:grid-cols-[1fr_auto_1fr]">
+    <header className="relative z-50 grid grid-cols-[1fr_auto] items-center gap-2 sm:gap-4 xl:grid-cols-[1fr_auto_1fr]">
       <Brand alt={copy.brandAlt} homeLabel={language === 'zh' ? 'SZKL 首页' : 'SZKL home'} />
 
       <nav
-        className="hidden items-center rounded-full border border-white/15 bg-black/20 px-2 py-1 shadow-[0_16px_50px_rgba(0,0,0,0.18)] backdrop-blur-md lg:flex"
+        className="hidden items-center rounded-full border border-white/15 bg-black/20 px-2 py-1 shadow-[0_16px_50px_rgba(0,0,0,0.18)] backdrop-blur-md xl:flex"
         aria-label={navigationLabel}
       >
         {NAV_LINKS.map((link, index) => (
           <a
             key={link.label}
             href={link.href}
-            className="group inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-white/62 transition-colors duration-300 hover:text-white"
+            className="group inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 py-3 text-sm text-white/62 transition-colors duration-300 hover:text-white"
           >
             {copy.nav[index]}
             {index === NAV_LINKS.length - 1 && (
@@ -106,7 +106,7 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
           href={PULSE_URL}
           target="_blank"
           rel="noreferrer"
-          className="pulse-cta group hidden items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
+          className="pulse-cta group hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5 xl:inline-flex"
         >
           {copy.experiencePulse}
           <ArrowUpRight
@@ -116,8 +116,9 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
         </a>
         <button
           type="button"
-          className="grid h-10 w-10 place-items-center rounded-full border border-white/30 text-white transition-colors hover:border-white/60 hover:bg-white/10 lg:hidden"
+          className="grid h-11 w-11 place-items-center rounded-full border border-white/30 text-white transition-colors hover:border-white/60 hover:bg-white/10 xl:hidden"
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
+          aria-controls="mobile-navigation"
           aria-label={
             menuOpen
               ? language === 'zh'
@@ -135,7 +136,8 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
 
       {menuOpen && (
         <nav
-          className="absolute left-0 right-0 top-[64px] rounded-3xl border border-white/15 bg-black/95 p-3 shadow-2xl backdrop-blur-xl sm:top-[76px] lg:hidden"
+          id="mobile-navigation"
+          className="absolute left-0 right-0 top-[64px] max-h-[calc(100svh-92px)] overflow-y-auto rounded-3xl border border-white/15 bg-black/95 p-3 shadow-2xl backdrop-blur-xl sm:top-[76px] xl:hidden"
           aria-label={language === 'zh' ? '移动端导航' : 'Mobile navigation'}
         >
           {NAV_LINKS.map((link, index) => (

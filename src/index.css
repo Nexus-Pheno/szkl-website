@@ -13,6 +13,8 @@
 html {
   scroll-behavior: smooth;
   background: #000;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html,
@@ -27,6 +29,7 @@ body {
   overflow-x: hidden;
   background: #000;
   font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
@@ -37,6 +40,19 @@ body[data-language='zh'] {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #aab3ff;
+  outline-offset: 3px;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
 }
 
 ::selection {
@@ -46,6 +62,15 @@ a {
 
 .hero-video {
   filter: saturate(1.14) contrast(1.06) brightness(0.86);
+}
+
+@media (max-width: 639px) {
+  .hero-shell {
+    padding-top: max(1.25rem, env(safe-area-inset-top));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+  }
 }
 
 .scroll-progress {
