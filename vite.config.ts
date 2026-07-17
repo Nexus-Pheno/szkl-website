@@ -12,6 +12,10 @@ export default defineConfig(async () => {
       cloudflare({
         config: {
           main: './worker/index.ts',
+          assets: {
+            binding: 'ASSETS',
+            not_found_handling: 'single-page-application',
+          },
         },
       }),
       sitesStatic(),

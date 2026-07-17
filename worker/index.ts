@@ -6,6 +6,17 @@ type Env = {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+
+    if (
+      response.status !== 404 ||
+      request.method !== 'GET' ||
+      !request.headers.get('accept')?.includes('text/html')
+    ) {
+      return response;
+    }
+
+    const indexUrl = new URL('/index.html', request.url);
+    return env.ASSETS.fetch(new Request(indexUrl, { headers: request.headers }));
   },
 };

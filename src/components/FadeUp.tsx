@@ -7,6 +7,7 @@ type FadeUpProps = {
   duration?: number;
   y?: number;
   className?: string;
+  id?: string;
   style?: CSSProperties;
   as?: 'div' | 'section' | 'span' | 'h1' | 'h2' | 'h3' | 'p' | 'nav';
   once?: boolean;
@@ -18,6 +19,7 @@ export function FadeUp({
   duration = 0.7,
   y = 24,
   className,
+  id,
   style,
   as = 'div',
   once = true,
@@ -27,6 +29,7 @@ export function FadeUp({
   return (
     <Tag
       className={className}
+      id={id}
       style={style}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
