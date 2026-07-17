@@ -11,6 +11,7 @@ export const COPY = {
     languageChinese: '切换至中文',
     nav: ['Home', 'About', 'Pulse', 'Culture', 'Contact'],
     experiencePulse: 'Experience Pulse',
+    motionLine: 'EVIDENCE  ·  EXPERIMENTS  ·  DECISIONS  ·  LEARNING',
     hero: {
       company: 'Company behind Pulse',
       location: 'Shenzhen · Scientific intelligence',
@@ -138,6 +139,7 @@ export const COPY = {
     languageChinese: '查看中文网站',
     nav: ['首页', '关于我们', 'Pulse', '文化', '联系'],
     experiencePulse: '体验 Pulse',
+    motionLine: '证据  ·  实验  ·  决策  ·  学习',
     hero: {
       company: 'Pulse 背后的公司',
       location: '深圳 · 科研智能',

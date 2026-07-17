@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowDownRight, ArrowUpRight, LockKeyhole } from 'lucide-react';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { FadeUp } from './components/FadeUp';
 import { SiteHeader } from './components/SiteHeader';
 import { COPY, type Language } from './i18n';
@@ -19,6 +26,21 @@ function App() {
     window.localStorage.getItem('szkl-language') === 'zh' ? 'zh' : 'en',
   );
   const copy = COPY[language];
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 28,
+    mass: 0.28,
+  });
+  const heroVideoY = useTransform(scrollYProgress, [0, 0.16], [0, 110]);
+  const heroContentY = useTransform(scrollYProgress, [0, 0.16], [0, 74]);
+  const heroContentOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0.36]);
+  const signalRotation = useTransform(scrollYProgress, [0, 0.3], [0, 38]);
+  const marqueeX = useTransform(scrollYProgress, [0.08, 0.58], [100, -760]);
+  const aboutOrbY = useTransform(scrollYProgress, [0.05, 0.34], [-120, 180]);
+  const cultureOrbY = useTransform(scrollYProgress, [0.36, 0.72], [-100, 210]);
+  const pulseOrbY = useTransform(scrollYProgress, [0.5, 0.9], [-80, 170]);
 
   useEffect(() => {
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
@@ -32,8 +54,13 @@ function App() {
 
   return (
     <main className="min-w-0 overflow-hidden bg-[#f2f1ec] text-[#111]">
+      <motion.div
+        className="scroll-progress fixed left-0 top-0 z-[100] h-[3px] w-full origin-left bg-[linear-gradient(90deg,#ffffff_0%,#aab3ff_48%,#5967ff_100%)]"
+        style={{ scaleX: smoothProgress }}
+        aria-hidden="true"
+      />
       <section id="home" className="relative min-h-[100svh] scroll-mt-0 overflow-hidden bg-black text-white">
-        <video
+        <motion.video
           className="hero-video absolute inset-0 h-full w-full scale-[1.02] object-cover"
           src={VIDEO_SOURCE}
           autoPlay
@@ -42,16 +69,21 @@ function App() {
           playsInline
           aria-hidden="true"
           tabIndex={-1}
+          style={{ y: shouldReduceMotion ? 0 : heroVideoY }}
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.52)_0%,rgba(0,0,0,0.08)_38%,rgba(0,0,0,0.86)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_48%,rgba(93,107,255,0.26),transparent_33%)]" />
 
-        <div className="signal-field pointer-events-none absolute right-[-16vw] top-[18vh] h-[72vw] max-h-[920px] w-[72vw] max-w-[920px]" aria-hidden="true">
+        <motion.div
+          className="signal-field pointer-events-none absolute right-[-16vw] top-[18vh] h-[72vw] max-h-[920px] w-[72vw] max-w-[920px]"
+          style={{ rotate: shouldReduceMotion ? 0 : signalRotation }}
+          aria-hidden="true"
+        >
           <span className="signal-ring signal-ring-one" />
           <span className="signal-ring signal-ring-two" />
           <span className="signal-ring signal-ring-three" />
           <span className="signal-core" />
-        </div>
+        </motion.div>
 
         <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col px-5 py-5 sm:px-8 sm:py-7 lg:px-10 xl:px-8">
           <SiteHeader language={language} onLanguageChange={setLanguage} />
@@ -61,7 +93,13 @@ function App() {
             <span className="text-right">{copy.hero.location}</span>
           </div>
 
-          <div className="mt-auto grid min-w-0 gap-8 pb-8 pt-24 lg:grid-cols-[minmax(0,1fr)_310px] lg:items-end lg:gap-14 lg:pb-12">
+          <motion.div
+            className="mt-auto grid min-w-0 gap-8 pb-8 pt-24 lg:grid-cols-[minmax(0,1fr)_310px] lg:items-end lg:gap-14 lg:pb-12"
+            style={{
+              y: shouldReduceMotion ? 0 : heroContentY,
+              opacity: shouldReduceMotion ? 1 : heroContentOpacity,
+            }}
+          >
             <div className="min-w-0">
               <FadeUp as="p" className="mb-6 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.24em] text-white/65">
                 <span className="h-2 w-2 rounded-full bg-[#9ba7ff] shadow-[0_0_20px_rgba(155,167,255,0.95)]" />
@@ -111,12 +149,17 @@ function App() {
                 </a>
               </div>
             </FadeUp>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section id="about" className="scroll-mt-0 px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.31fr_minmax(0,1fr)] lg:gap-20">
+      <section id="about" className="relative scroll-mt-0 overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+        <motion.div
+          className="ambient-orb pointer-events-none absolute -right-44 top-20 h-[480px] w-[480px] rounded-full bg-[#6d79ff]/10 blur-[95px]"
+          style={{ y: shouldReduceMotion ? 0 : aboutOrbY }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.31fr_minmax(0,1fr)] lg:gap-20">
           <div>
             <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-black/42">
               {copy.about.label}
@@ -141,6 +184,24 @@ function App() {
         </div>
       </section>
 
+      <section
+        className="kinetic-marquee relative overflow-hidden border-y border-white/10 bg-[#0c0d13] py-7 text-white sm:py-9"
+        aria-label={copy.motionLine}
+      >
+        <motion.div
+          className="flex w-max min-w-max items-center gap-14 whitespace-nowrap text-[clamp(2rem,5.2vw,5rem)] font-medium tracking-[-0.045em] text-white/90"
+          style={{ x: shouldReduceMotion ? 0 : marqueeX }}
+          aria-hidden="true"
+        >
+          {[0, 1, 2].map((item) => (
+            <span key={item} className="inline-flex items-center gap-14">
+              {copy.motionLine}
+              <span className="h-3 w-3 rounded-full bg-[#9ba7ff] shadow-[0_0_26px_rgba(155,167,255,0.9)]" />
+            </span>
+          ))}
+        </motion.div>
+      </section>
+
       <section id="ecosystem" className="scroll-mt-0 bg-[#090909] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-36">
         <div className="mx-auto max-w-7xl">
           <div className="grid min-w-0 gap-8 lg:grid-cols-2 lg:items-end">
@@ -153,7 +214,7 @@ function App() {
           </div>
 
           <div className="mt-16 grid min-w-0 gap-3 lg:grid-cols-3">
-            <FadeUp className="flex min-h-[410px] min-w-0 flex-col justify-between rounded-[2rem] border border-white/14 p-7 sm:p-9">
+            <FadeUp y={72} scale={0.92} rotate={-1.5} blur={10} className="flex min-h-[410px] min-w-0 flex-col justify-between rounded-[2rem] border border-white/14 p-7 sm:p-9">
               <div className="flex items-center justify-between gap-4 text-xs uppercase tracking-[0.18em] text-white/38">
                 <span>01</span>
                 <span>{copy.ecosystem.companyLabel}</span>
@@ -166,7 +227,7 @@ function App() {
               </div>
             </FadeUp>
 
-            <FadeUp delay={0.08} className="pulse-card flex min-h-[410px] min-w-0 flex-col justify-between overflow-hidden rounded-[2rem] p-7 text-white sm:p-9">
+            <FadeUp delay={0.08} y={72} scale={0.9} rotate={1.5} blur={10} className="pulse-card flex min-h-[410px] min-w-0 flex-col justify-between overflow-hidden rounded-[2rem] p-7 text-white sm:p-9">
               <div className="relative z-10 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.18em] text-white/60">
                 <span>02</span>
                 <span>{copy.ecosystem.pulseLabel}</span>
@@ -188,7 +249,7 @@ function App() {
               </div>
             </FadeUp>
 
-            <FadeUp delay={0.16} className="flex min-h-[410px] min-w-0 flex-col justify-between rounded-[2rem] bg-[#f2f1ec] p-7 text-black sm:p-9">
+            <FadeUp delay={0.16} y={72} scale={0.92} rotate={-1} blur={10} className="flex min-h-[410px] min-w-0 flex-col justify-between rounded-[2rem] bg-[#f2f1ec] p-7 text-black sm:p-9">
               <div className="flex items-center justify-between gap-4 text-xs uppercase tracking-[0.18em] text-black/42">
                 <span>03</span>
                 <span className="inline-flex items-center gap-2"><LockKeyhole className="h-3.5 w-3.5" aria-hidden="true" /> {copy.ecosystem.phenoLabel}</span>
@@ -213,8 +274,13 @@ function App() {
         </div>
       </section>
 
-      <section id="culture" className="scroll-mt-0 px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
-        <div className="mx-auto max-w-7xl">
+      <section id="culture" className="relative scroll-mt-0 overflow-hidden px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+        <motion.div
+          className="ambient-orb pointer-events-none absolute -left-52 top-24 h-[560px] w-[560px] rounded-full bg-[#8290ff]/9 blur-[115px]"
+          style={{ y: shouldReduceMotion ? 0 : cultureOrbY }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl">
           <div className="grid min-w-0 gap-10 lg:grid-cols-[0.55fr_minmax(0,1fr)] lg:gap-20">
             <div>
               <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-black/42">
@@ -231,7 +297,15 @@ function App() {
 
           <div className="mt-16 grid min-w-0 gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
             {copy.culture.values.map((value, index) => (
-              <FadeUp key={value.title} delay={(index % 4) * 0.05} className="min-w-0 border-t border-black/20 py-8 lg:min-h-[230px]">
+              <FadeUp key={value.title} delay={(index % 4) * 0.05} y={46} scale={0.95} blur={8} className="relative min-w-0 border-t border-black/15 py-8 lg:min-h-[230px]">
+                <motion.span
+                  className="absolute left-0 top-[-1px] h-[2px] w-full origin-left bg-[linear-gradient(90deg,#5967ff_0%,rgba(89,103,255,0.08)_100%)]"
+                  initial={shouldReduceMotion ? false : { scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.85, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden="true"
+                />
                 <span className="text-xs text-black/35">{String(index + 1).padStart(2, '0')}</span>
                 <h3 className="mt-9 text-xl font-medium tracking-[-0.025em]">{value.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-black/52">{value.body}</p>
@@ -242,7 +316,11 @@ function App() {
       </section>
 
       <section id="pulse" className="relative scroll-mt-0 overflow-hidden bg-[#111318] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-40">
-        <div className="pointer-events-none absolute -right-48 top-20 h-[680px] w-[680px] rounded-full bg-[#4d5bff]/18 blur-[120px]" aria-hidden="true" />
+        <motion.div
+          className="ambient-orb pointer-events-none absolute -right-48 top-20 h-[680px] w-[680px] rounded-full bg-[#4d5bff]/18 blur-[120px]"
+          style={{ y: shouldReduceMotion ? 0 : pulseOrbY }}
+          aria-hidden="true"
+        />
         <div className="relative mx-auto grid max-w-7xl min-w-0 gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.75fr)] lg:gap-24">
           <div className="min-w-0">
             <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-[#aab3ff]">
@@ -269,8 +347,18 @@ function App() {
 
           <div className="min-w-0 border-t border-white/20">
             {copy.pulse.directions.map((item, index) => (
-              <FadeUp key={item.title} delay={index * 0.05} className="grid min-w-0 grid-cols-[42px_minmax(0,1fr)] gap-5 border-b border-white/15 py-7">
-                <span className="pt-1 text-xs text-white/30">{String(index + 1).padStart(2, '0')}</span>
+              <FadeUp key={item.title} delay={index * 0.05} y={42} scale={0.975} blur={7} className="grid min-w-0 grid-cols-[42px_minmax(0,1fr)] gap-5 border-b border-white/15 py-7">
+                <div className="pt-1 text-xs text-white/30">
+                  {String(index + 1).padStart(2, '0')}
+                  <motion.span
+                    className="mt-3 block h-1.5 w-1.5 rounded-full bg-[#aab3ff] shadow-[0_0_16px_rgba(170,179,255,0.7)]"
+                    initial={shouldReduceMotion ? false : { scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.45, delay: 0.15 + index * 0.06 }}
+                    aria-hidden="true"
+                  />
+                </div>
                 <div className="min-w-0">
                   <h3 className="text-xl font-medium tracking-[-0.025em]">{item.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/48">{item.body}</p>
@@ -295,10 +383,28 @@ function App() {
             <ArrowDownRight className="hidden h-12 w-12 shrink-0 text-black/25 sm:block" aria-hidden="true" />
           </div>
 
-          <div className="mt-16 grid min-w-0 border-t border-black/20 md:grid-cols-5">
+          <div className="relative mt-16 grid min-w-0 border-t border-black/20 md:grid-cols-5">
+            <motion.div
+              className="absolute left-0 top-[-2px] z-10 h-[3px] w-full origin-left bg-[linear-gradient(90deg,#5967ff_0%,#aab3ff_52%,rgba(170,179,255,0.12)_100%)] shadow-[0_0_18px_rgba(89,103,255,0.22)]"
+              initial={shouldReduceMotion ? false : { scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 1.35, ease: [0.22, 1, 0.36, 1] }}
+              aria-hidden="true"
+            />
             {copy.learning.steps.map((step, index) => (
-              <FadeUp key={step.title} delay={index * 0.06} className="min-w-0 border-b border-black/15 py-8 md:min-h-[240px] md:border-b-0 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
-                <span className="text-xs text-black/32">{step.number}</span>
+              <FadeUp key={step.title} delay={0.12 + index * 0.08} y={50} scale={0.95} blur={8} className="min-w-0 border-b border-black/15 py-8 md:min-h-[240px] md:border-b-0 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
+                <span className="inline-flex items-center gap-3 text-xs text-black/32">
+                  <motion.span
+                    className="h-2 w-2 rounded-full bg-[#5967ff] shadow-[0_0_14px_rgba(89,103,255,0.5)]"
+                    initial={shouldReduceMotion ? false : { scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.45, delay: 0.28 + index * 0.09 }}
+                    aria-hidden="true"
+                  />
+                  {step.number}
+                </span>
                 <h3 className="mt-14 text-2xl font-medium tracking-[-0.03em]">{step.title}</h3>
                 <p className="mt-4 max-w-[180px] text-sm leading-relaxed text-black/50">{step.body}</p>
               </FadeUp>
@@ -307,8 +413,16 @@ function App() {
         </div>
       </section>
 
-      <section id="contact" className="scroll-mt-0 bg-black px-5 pb-8 pt-24 text-white sm:px-8 sm:pt-32 lg:px-10 lg:pt-40">
-        <div className="mx-auto max-w-7xl">
+      <section id="contact" className="closing-stage relative scroll-mt-0 overflow-hidden bg-black px-5 pb-8 pt-24 text-white sm:px-8 sm:pt-32 lg:px-10 lg:pt-40">
+        <motion.div
+          className="pointer-events-none absolute -left-44 top-20 h-[560px] w-[560px] rounded-full bg-[#5967ff]/18 blur-[120px]"
+          initial={shouldReduceMotion ? false : { scale: 0.72, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 1.4, ease: [0.22, 1, 0.36, 1] }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl">
           <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-white/38">
             {copy.closing.label}
           </FadeUp>
