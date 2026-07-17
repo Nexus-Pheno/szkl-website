@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
-import { NAV_LINKS } from '../site';
-
-type SiteHeaderProps = {
-  currentPath: '/' | '/about-us';
-};
+import { NAV_LINKS, PULSE_URL } from '../site';
 
 function Brand() {
   return (
@@ -25,27 +21,22 @@ function Brand() {
   );
 }
 
-export function SiteHeader({ currentPath }: SiteHeaderProps) {
+export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const isActive = (href: string) => href === currentPath;
-
   return (
-    <header className="relative z-50 flex items-center justify-between">
+    <header className="relative z-50 grid grid-cols-[1fr_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
       <Brand />
 
       <nav
-        className="hidden items-center rounded-full border border-white/20 bg-black/10 px-2 py-1 backdrop-blur-[3px] lg:flex"
+        className="hidden items-center rounded-full border border-white/15 bg-black/20 px-2 py-1 shadow-[0_16px_50px_rgba(0,0,0,0.18)] backdrop-blur-md lg:flex"
         aria-label="Main navigation"
       >
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            className={`group inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm transition-colors duration-300 ${
-              isActive(link.href) ? 'text-white' : 'text-white/65 hover:text-white'
-            }`}
-            aria-current={link.href === currentPath ? 'page' : undefined}
+            className="group inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-white/62 transition-colors duration-300 hover:text-white"
           >
             {link.label}
             {link.label === 'Contact' && (
@@ -57,6 +48,19 @@ export function SiteHeader({ currentPath }: SiteHeaderProps) {
           </a>
         ))}
       </nav>
+
+      <a
+        href={PULSE_URL}
+        target="_blank"
+        rel="noreferrer"
+        className="group hidden items-center justify-self-end gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
+      >
+        Experience Pulse
+        <ArrowUpRight
+          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          aria-hidden="true"
+        />
+      </a>
 
       <button
         type="button"
@@ -84,6 +88,16 @@ export function SiteHeader({ currentPath }: SiteHeaderProps) {
               {link.label === 'Contact' && <ArrowUpRight className="h-4 w-4" aria-hidden="true" />}
             </a>
           ))}
+          <a
+            href={PULSE_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-sm font-medium text-black"
+            onClick={() => setMenuOpen(false)}
+          >
+            Experience Pulse
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
         </nav>
       )}
     </header>
