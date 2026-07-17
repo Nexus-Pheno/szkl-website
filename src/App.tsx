@@ -82,7 +82,6 @@ function App() {
           <span className="signal-ring signal-ring-one" />
           <span className="signal-ring signal-ring-two" />
           <span className="signal-ring signal-ring-three" />
-          <span className="signal-core" />
         </motion.div>
 
         <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col px-5 py-5 sm:px-8 sm:py-7 lg:px-10 xl:px-8">
@@ -141,7 +140,7 @@ function App() {
                   href={PULSE_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
+                  className="pulse-cta group flex items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   {copy.experiencePulse}
                   <ExternalArrow />
@@ -252,7 +251,7 @@ function App() {
                   href={PULSE_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="group mt-8 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
+                  className="pulse-cta group mt-8 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   {copy.experiencePulse}
                   <ExternalArrow />
@@ -362,7 +361,7 @@ function App() {
                 href={PULSE_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group mt-9 inline-flex items-center gap-4 rounded-full bg-[#aab3ff] px-6 py-4 text-sm font-medium text-[#10121a] transition-transform duration-300 hover:-translate-y-0.5"
+                className="pulse-cta group mt-9 inline-flex items-center gap-4 rounded-full bg-[#aab3ff] px-6 py-4 text-sm font-medium text-[#10121a] transition-transform duration-300 hover:-translate-y-0.5"
               >
                 {copy.experiencePulse}
                 <ExternalArrow />
@@ -460,7 +459,7 @@ function App() {
                 href={PULSE_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-4 rounded-full bg-white px-6 py-4 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
+                className="pulse-cta group inline-flex items-center gap-4 rounded-full bg-white px-6 py-4 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
               >
                 {copy.experiencePulse}
                 <ExternalArrow />

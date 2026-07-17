@@ -106,7 +106,7 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
           href={PULSE_URL}
           target="_blank"
           rel="noreferrer"
-          className="group hidden items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
+          className="pulse-cta group hidden items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
         >
           {copy.experiencePulse}
           <ArrowUpRight
@@ -153,7 +153,7 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
             href={PULSE_URL}
             target="_blank"
             rel="noreferrer"
-            className="mt-2 flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-sm font-medium text-black"
+            className="pulse-cta mt-2 flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-sm font-medium text-black"
             onClick={() => setMenuOpen(false)}
           >
             {copy.experiencePulse}

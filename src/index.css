@@ -59,8 +59,7 @@ a {
   filter: drop-shadow(0 0 32px rgba(143, 156, 255, 0.28));
 }
 
-.signal-ring,
-.signal-core {
+.signal-ring {
   position: absolute;
   border-radius: 9999px;
 }
@@ -85,15 +84,37 @@ a {
   animation: signal-breathe 7s 1.6s ease-in-out infinite;
 }
 
-.signal-core {
-  left: 50%;
+.pulse-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.pulse-cta::after {
+  position: absolute;
+  z-index: 0;
   top: 50%;
-  height: 9%;
-  width: 9%;
-  transform: translate(-50%, -50%);
-  background: rgba(185, 194, 255, 0.94);
-  box-shadow: 0 0 24px rgba(155, 167, 255, 0.85), 0 0 110px 44px rgba(85, 101, 255, 0.32);
-  animation: signal-core 4.8s ease-in-out infinite;
+  right: -0.35em;
+  width: 3em;
+  height: 3em;
+  border-radius: 9999px;
+  content: '';
+  transform: translateY(-50%) scale(0.9);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.96) 0 9%,
+    rgba(155, 167, 255, 0.58) 22%,
+    rgba(125, 140, 255, 0.2) 48%,
+    transparent 72%
+  );
+  box-shadow: 0 0 1.25em rgba(125, 140, 255, 0.38);
+  pointer-events: none;
+  animation: pulse-cta-flare 4.2s ease-in-out infinite;
+}
+
+.pulse-cta svg {
+  position: relative;
+  z-index: 1;
 }
 
 .pulse-card {
@@ -183,15 +204,15 @@ a {
   }
 }
 
-@keyframes signal-core {
+@keyframes pulse-cta-flare {
   0%,
   100% {
-    opacity: 0.72;
-    transform: translate(-50%, -50%) scale(0.84);
+    opacity: 0.62;
+    transform: translateY(-50%) scale(0.88);
   }
   50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.92;
+    transform: translateY(-50%) scale(1.04);
   }
 }
 
