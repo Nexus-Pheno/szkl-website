@@ -127,6 +127,12 @@ function App() {
             </div>
 
             <FadeUp delay={0.22} className="min-w-0 rounded-[1.75rem] border border-white/18 bg-black/30 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.32)] backdrop-blur-xl lg:mb-1">
+              <img
+                src="/pulse-logo-horizontal-official.png"
+                alt="Pulse by Pheno"
+                className="mb-6 h-auto w-[190px] max-w-full object-contain"
+                draggable="false"
+              />
               <p className="text-base leading-relaxed text-white/78">
                 {copy.hero.body}
               </p>
