@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { sitesStatic } from './build/sites-static-vite-plugin';
 
 export default defineConfig(async () => {
   const { cloudflare } = await import('@cloudflare/vite-plugin');
@@ -13,6 +14,7 @@ export default defineConfig(async () => {
           main: './worker/index.ts',
         },
       }),
+      sitesStatic(),
     ],
   };
 });
