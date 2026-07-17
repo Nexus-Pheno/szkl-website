@@ -18,13 +18,17 @@ function Brand() {
   return (
     <a
       href="#home"
-      className="group inline-flex shrink-0 items-center gap-2.5 text-white transition-opacity hover:opacity-80"
-      aria-label="DesignPro home"
+      className="group inline-flex shrink-0 transition-opacity hover:opacity-80"
+      aria-label="SZKL home"
     >
-      <span className="grid h-8 w-8 place-items-center rounded-full border-2 border-white">
-        <span className="h-2.5 w-2.5 rounded-full bg-white" />
+      <span className="relative block h-[58px] w-[190px] overflow-hidden sm:h-16 sm:w-[210px]">
+        <img
+          src="/szkl-logo-official.png"
+          alt="SZKL — Shenzhen Knowledge Labs"
+          className="absolute left-1/2 top-1/2 w-72 max-w-none -translate-x-1/2 -translate-y-1/2 invert mix-blend-screen sm:w-[318px]"
+          draggable="false"
+        />
       </span>
-      <span className="text-base font-medium tracking-tight">DesignPro</span>
     </a>
   );
 }
