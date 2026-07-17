@@ -26,8 +26,12 @@ body {
   min-width: 320px;
   overflow-x: hidden;
   background: #000;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+body[data-language='zh'] {
+  letter-spacing: 0.005em;
 }
 
 button,
