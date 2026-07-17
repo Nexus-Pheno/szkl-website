@@ -69,7 +69,8 @@ video {
 }
 
 .szkl-logo-on-dark {
-  filter: grayscale(1) contrast(10) invert(1);
+  filter: grayscale(1) contrast(1.35) invert(1);
+  image-rendering: auto;
   mix-blend-mode: screen;
 }
 
