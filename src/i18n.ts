@@ -9,7 +9,7 @@ export const COPY = {
     languageLabel: 'Choose website language',
     languageEnglish: 'View in English',
     languageChinese: '切换至中文',
-    nav: ['Home', 'About', 'Pulse', 'Culture', 'Contact'],
+    nav: ['Home', 'About', 'Culture', 'Pulse', 'Contact'],
     experiencePulse: 'Experience Pulse',
     motionLine: 'EVIDENCE  ·  EXPERIMENTS  ·  DECISIONS  ·  LEARNING',
     hero: {
@@ -134,7 +134,7 @@ export const COPY = {
     languageLabel: '选择网站语言',
     languageEnglish: '切换至英文',
     languageChinese: '查看中文网站',
-    nav: ['首页', '关于我们', 'Pulse', '文化', '联系'],
+    nav: ['首页', '关于我们', '文化', 'Pulse', '联系'],
     experiencePulse: '体验 Pulse',
     motionLine: '证据  ·  实验  ·  决策  ·  学习',
     hero: {

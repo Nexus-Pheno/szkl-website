@@ -13,7 +13,7 @@ export const PULSE_LOCKUP = {
 export const NAV_LINKS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: 'Pulse', href: '#pulse' },
   { label: 'Culture', href: '#culture' },
+  { label: 'Pulse', href: '#pulse' },
   { label: 'Contact', href: '#contact' },
 ];
