@@ -1,7 +1,18 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
-  base: './',
-  plugins: [react()],
+export default defineConfig(async () => {
+  const { cloudflare } = await import('@cloudflare/vite-plugin');
+
+  return {
+    base: './',
+    plugins: [
+      react(),
+      cloudflare({
+        config: {
+          main: './worker/index.ts',
+        },
+      }),
+    ],
+  };
 });
