@@ -260,21 +260,12 @@ function App() {
                 <span className="inline-flex items-center gap-2"><LockKeyhole className="h-3.5 w-3.5" aria-hidden="true" /> {copy.ecosystem.phenoLabel}</span>
               </div>
               <div>
-                <div className="flex items-center gap-4">
-                  <img
-                    src="/pheno-icon-official.png"
-                    alt=""
-                    className="h-12 w-12 shrink-0 object-contain"
-                    aria-hidden="true"
-                    draggable="false"
-                  />
-                  <img
-                    src="/pheno-wordmark-official.png"
-                    alt="Pheno"
-                    className="w-[168px] object-contain sm:w-[182px]"
-                    draggable="false"
-                  />
-                </div>
+                <img
+                  src="/pheno-logo-official.png"
+                  alt="Pheno"
+                  className="h-auto w-[240px] max-w-full object-contain sm:w-[270px]"
+                  draggable="false"
+                />
                 <p className="mt-5 text-base leading-relaxed text-black/58">
                   {copy.ecosystem.phenoBody}
                 </p>
