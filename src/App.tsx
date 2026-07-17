@@ -129,7 +129,7 @@ function App() {
               <img
                 src="/pulse-logo-horizontal-official.png"
                 alt="Pulse by Pheno"
-                className="mb-6 h-auto w-[190px] max-w-full object-contain"
+                className="brand-logo-on-dark mb-6 h-auto w-[190px] max-w-full object-contain"
                 draggable="false"
               />
               <p className="text-base leading-relaxed text-white/78">
@@ -221,7 +221,7 @@ function App() {
           <div className="mt-16 grid min-w-0 gap-3 lg:grid-cols-3">
             <FadeUp y={72} scale={0.92} rotate={-1.5} blur={10} className="h-full min-w-0">
               <motion.article
-                className="ecosystem-card ecosystem-card-company flex h-full min-h-[410px] min-w-0 flex-col justify-between rounded-[2rem] border border-white/14 p-7 sm:p-9"
+                className="ecosystem-card ecosystem-card-company grid h-full min-h-[440px] min-w-0 grid-rows-[auto_112px_minmax(0,1fr)_auto] gap-y-6 rounded-[2rem] border border-white/14 bg-black p-7 sm:p-9"
                 whileHover={shouldReduceMotion ? undefined : { y: -7, scale: 1.012 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.995 }}
                 transition={{ type: 'spring', stiffness: 280, damping: 24, mass: 0.55 }}
@@ -231,18 +231,34 @@ function App() {
                   <span>01</span>
                   <span>{copy.ecosystem.companyLabel}</span>
                 </div>
-                <div>
-                  <h3 className="text-5xl font-medium tracking-[-0.055em]">SZKL</h3>
-                  <p className="mt-5 text-base leading-relaxed text-white/55">
-                    {copy.ecosystem.companyBody}
-                  </p>
+                <div className="flex min-w-0 items-center">
+                  <span className="relative block h-[78px] w-[232px] max-w-full overflow-hidden">
+                    <img
+                      src="/szkl-logo-official.png"
+                      alt={copy.brandAlt}
+                      className="szkl-logo-on-dark absolute left-1/2 top-1/2 w-[332px] max-w-none -translate-x-1/2 -translate-y-1/2"
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                    />
+                  </span>
                 </div>
+                <p className="text-base leading-relaxed text-white/55">
+                  {copy.ecosystem.companyBody}
+                </p>
+                <a
+                  href="#about"
+                  className="group inline-flex min-h-11 w-fit items-center gap-3 rounded-full border border-white/22 px-5 py-3 text-sm font-medium text-white/78 transition-colors hover:border-white/45 hover:text-white"
+                >
+                  {copy.ecosystem.companyAction}
+                  <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" aria-hidden="true" />
+                </a>
               </motion.article>
             </FadeUp>
 
             <FadeUp delay={0.08} y={72} scale={0.9} rotate={1.5} blur={10} className="h-full min-w-0">
               <motion.article
-                className="ecosystem-card ecosystem-card-pulse pulse-card flex h-full min-h-[410px] min-w-0 flex-col justify-between overflow-hidden rounded-[2rem] p-7 text-white sm:p-9"
+                className="ecosystem-card ecosystem-card-pulse pulse-card grid h-full min-h-[440px] min-w-0 grid-rows-[auto_112px_minmax(0,1fr)_auto] gap-y-6 overflow-hidden rounded-[2rem] p-7 text-white sm:p-9"
                 whileHover={shouldReduceMotion ? undefined : { y: -7, scale: 1.012 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.995 }}
                 transition={{ type: 'spring', stiffness: 280, damping: 24, mass: 0.55 }}
@@ -252,34 +268,34 @@ function App() {
                   <span>02</span>
                   <span>{copy.ecosystem.pulseLabel}</span>
                 </div>
-                <div className="relative z-10">
+                <div className="flex min-w-0 items-center">
                   <img
                     src="/pulse-logo-official.png"
                     alt="Pulse"
-                    className="w-[118px] object-contain sm:w-[132px]"
+                    className="brand-logo-on-dark w-[104px] object-contain sm:w-[112px]"
                     loading="lazy"
                     decoding="async"
                     draggable="false"
                   />
-                  <p className="mt-5 text-base leading-relaxed text-white/72">
-                    {copy.ecosystem.pulseBody}
-                  </p>
-                  <a
-                    href={PULSE_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="pulse-cta group mt-8 inline-flex min-h-11 items-center gap-3 rounded-full bg-white px-5 py-3.5 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
-                  >
-                    {copy.experiencePulse}
-                    <ExternalArrow />
-                  </a>
                 </div>
+                <p className="text-base leading-relaxed text-white/72">
+                  {copy.ecosystem.pulseBody}
+                </p>
+                <a
+                  href={PULSE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="pulse-cta group inline-flex min-h-11 w-fit items-center gap-3 rounded-full bg-white px-5 py-3.5 text-sm font-medium text-black transition-transform duration-300 hover:-translate-y-0.5"
+                >
+                  {copy.experiencePulse}
+                  <ExternalArrow />
+                </a>
               </motion.article>
             </FadeUp>
 
             <FadeUp delay={0.16} y={72} scale={0.92} rotate={-1} blur={10} className="h-full min-w-0">
               <motion.article
-                className="ecosystem-card ecosystem-card-pheno flex h-full min-h-[410px] min-w-0 flex-col justify-between rounded-[2rem] bg-[#f2f1ec] p-7 text-black sm:p-9"
+                className="ecosystem-card ecosystem-card-pheno grid h-full min-h-[440px] min-w-0 grid-rows-[auto_112px_minmax(0,1fr)_auto] gap-y-6 rounded-[2rem] bg-[#f2f1ec] p-7 text-black sm:p-9"
                 whileHover={shouldReduceMotion ? undefined : { y: -7, scale: 1.012 }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.995 }}
                 transition={{ type: 'spring', stiffness: 280, damping: 24, mass: 0.55 }}
@@ -289,28 +305,28 @@ function App() {
                   <span>03</span>
                   <span className="inline-flex items-center gap-2"><LockKeyhole className="h-3.5 w-3.5" aria-hidden="true" /> {copy.ecosystem.phenoLabel}</span>
                 </div>
-                <div>
+                <div className="flex min-w-0 items-center">
                   <img
                     src="/pheno-logo-official.png"
                     alt="Pheno"
-                    className="h-auto w-[240px] max-w-full object-contain sm:w-[270px]"
+                    className="brand-logo-on-light h-auto w-[240px] max-w-full object-contain sm:w-[270px]"
                     loading="lazy"
                     decoding="async"
                     draggable="false"
                   />
-                  <p className="mt-5 text-base leading-relaxed text-black/58">
-                    {copy.ecosystem.phenoBody}
-                  </p>
-                  <a
-                    href={PHENO_PORTAL_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group mt-5 inline-flex min-h-11 items-center gap-3 border-b border-black/30 py-3 text-sm font-medium text-black transition-colors hover:border-black"
-                  >
-                    {copy.ecosystem.phenoPortal}
-                    <ExternalArrow />
-                  </a>
                 </div>
+                <p className="text-base leading-relaxed text-black/58">
+                  {copy.ecosystem.phenoBody}
+                </p>
+                <a
+                  href={PHENO_PORTAL_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex min-h-11 w-fit items-center gap-3 rounded-full border border-black/22 px-5 py-3 text-sm font-medium text-black transition-colors hover:border-black/55"
+                >
+                  {copy.ecosystem.phenoPortal}
+                  <ExternalArrow />
+                </a>
               </motion.article>
             </FadeUp>
           </div>
@@ -370,7 +386,7 @@ function App() {
               <img
                 src="/pulse-logo-official.png"
                 alt=""
-                className="w-[94px] object-contain sm:w-[112px]"
+                className="brand-logo-on-dark w-[94px] object-contain sm:w-[112px]"
                 aria-hidden="true"
                 loading="lazy"
                 decoding="async"

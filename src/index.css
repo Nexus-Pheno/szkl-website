@@ -64,6 +64,15 @@ video {
   filter: saturate(1.14) contrast(1.06) brightness(0.86);
 }
 
+.brand-logo-on-dark {
+  filter: brightness(0) invert(1);
+}
+
+.szkl-logo-on-dark {
+  filter: grayscale(1) contrast(10) invert(1);
+  mix-blend-mode: screen;
+}
+
 @media (max-width: 639px) {
   .hero-shell {
     padding-top: max(1.25rem, env(safe-area-inset-top));
@@ -211,14 +220,6 @@ video {
   animation-delay: -2.9s;
 }
 
-.ecosystem-card img {
-  transition: filter 450ms ease;
-}
-
-.ecosystem-card:focus-within img {
-  filter: brightness(1.06) saturate(1.04);
-}
-
 .ecosystem-card-company:focus-within {
   border-color: rgba(255, 255, 255, 0.32);
   box-shadow: 0 28px 76px -44px rgba(151, 162, 255, 0.58);
@@ -233,10 +234,6 @@ video {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .ecosystem-card:hover img {
-    filter: brightness(1.06) saturate(1.04);
-  }
-
   .ecosystem-card-company:hover {
     border-color: rgba(255, 255, 255, 0.32);
     box-shadow: 0 28px 76px -44px rgba(151, 162, 255, 0.58);

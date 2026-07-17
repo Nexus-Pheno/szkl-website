@@ -35,6 +35,7 @@ export const COPY = {
       companyLabel: 'The company',
       companyBody:
         'The home for the people, products, and long-term systems that help scientific work become usable intelligence.',
+      companyAction: 'About SZKL',
       pulseLabel: 'Public platform',
       pulseBody:
         'The intelligence layer for scientific work—connecting evidence, experiments, decisions, and organizational memory.',
@@ -160,6 +161,7 @@ export const COPY = {
       title: '同一个平台，两条通往更好科学的路径。',
       companyLabel: '公司平台',
       companyBody: '承载团队、产品与长期系统，让科研工作转化为真正可用的智能。',
+      companyAction: '了解 SZKL',
       pulseLabel: '公众平台',
       pulseBody: '面向科研工作的智能层，连接证据、实验、决策与组织记忆。',
       phenoLabel: '内部使用',

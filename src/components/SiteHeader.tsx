@@ -19,7 +19,7 @@ function Brand({ alt, homeLabel }: { alt: string; homeLabel: string }) {
         <img
           src="/szkl-logo-official.png"
           alt={alt}
-          className="absolute left-1/2 top-1/2 w-[178px] max-w-none -translate-x-1/2 -translate-y-1/2 invert mix-blend-screen sm:w-[300px]"
+          className="szkl-logo-on-dark absolute left-1/2 top-1/2 w-[178px] max-w-none -translate-x-1/2 -translate-y-1/2 sm:w-[300px]"
           draggable="false"
         />
       </span>
