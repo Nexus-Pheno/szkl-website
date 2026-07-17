@@ -155,11 +155,14 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
             href={PULSE_URL}
             target="_blank"
             rel="noreferrer"
-            className="pulse-cta mt-2 flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-sm font-medium text-black"
+            className="pulse-cta group mt-2 flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-sm font-medium text-black hover:-translate-y-0.5"
             onClick={() => setMenuOpen(false)}
           >
             {copy.experiencePulse}
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              aria-hidden="true"
+            />
           </a>
         </nav>
       )}
