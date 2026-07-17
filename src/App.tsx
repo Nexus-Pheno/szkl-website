@@ -33,6 +33,11 @@ function App() {
     damping: 28,
     mass: 0.28,
   });
+  const heroKeywordGradientPosition = useTransform(
+    smoothProgress,
+    [0, 0.18],
+    ['12% 50%', '88% 50%'],
+  );
   const heroVideoY = useTransform(scrollYProgress, [0, 0.16], [0, 110]);
   const heroContentY = useTransform(scrollYProgress, [0, 0.16], [0, 74]);
   const heroContentOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0.36]);
@@ -106,8 +111,20 @@ function App() {
                 className="max-w-[980px] text-[clamp(3.25rem,13vw,4.3rem)] font-medium leading-[0.86] tracking-[-0.07em] sm:text-[clamp(4.6rem,8.2vw,7.6rem)]"
                 ariaLabel={PULSE_LOCKUP.headline}
               >
-                <span className="block">Make Knowledge{' '}</span>
-                <span className="hero-accent block">Count.</span>
+                <span className="block">
+                  Make{' '}
+                  <motion.span
+                    className="hero-keyword inline-block"
+                    style={{
+                      backgroundPosition: shouldReduceMotion
+                        ? '50% 50%'
+                        : heroKeywordGradientPosition,
+                    }}
+                  >
+                    Knowledge
+                  </motion.span>
+                </span>
+                <span className="block">Count.</span>
               </FadeUp>
               <FadeUp
                 as="p"

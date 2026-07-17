@@ -86,11 +86,21 @@ video {
   box-shadow: 0 0 18px rgba(115, 130, 255, 0.55);
 }
 
-.hero-accent {
-  background: linear-gradient(90deg, #ffffff 0%, #c7cdff 48%, #8f9cff 100%);
+.hero-keyword {
+  background: linear-gradient(
+    105deg,
+    #ffffff 0%,
+    #dce0ff 24%,
+    #9aa7ff 48%,
+    #c8ceff 68%,
+    #ffffff 100%
+  );
+  background-size: 240% 100%;
   background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 32px rgba(143, 156, 255, 0.28));
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 34px rgba(143, 156, 255, 0.22));
 }
 
 .signal-ring {
