@@ -1,17 +1,41 @@
-import { FadeUp } from './components/FadeUp';
+import { useState } from 'react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ShinyText } from './components/ShinyText';
 
 const VIDEO_SOURCE =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260514_135830_bb6491d1-9b66-4aec-9722-13b4dfe3fb46.mp4';
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4';
 
-const HEADING = 'WE BUILD END-TO-END AI AUTOMATION SYSTEMS.';
+const NAV_LINKS = [
+  'Home',
+  'About Us',
+  'Courses',
+  'Instructors',
+  'Testimonials',
+  'Blog',
+];
+
+function Brand() {
+  return (
+    <a
+      href="#home"
+      className="group inline-flex shrink-0 items-center gap-2.5 text-white transition-opacity hover:opacity-80"
+      aria-label="DesignPro home"
+    >
+      <span className="grid h-8 w-8 place-items-center rounded-full border-2 border-white">
+        <span className="h-2.5 w-2.5 rounded-full bg-white" />
+      </span>
+      <span className="text-base font-medium tracking-tight">DesignPro</span>
+    </a>
+  );
+}
 
 function App() {
-  const words = HEADING.split(' ');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <main className="page-shell">
+    <main id="home" className="relative h-screen min-h-[620px] overflow-hidden bg-black text-white">
       <video
-        className="background-video"
+        className="absolute inset-0 h-full w-full object-cover"
         src={VIDEO_SOURCE}
         autoPlay
         muted
@@ -21,26 +45,96 @@ function App() {
         tabIndex={-1}
       />
 
-      <section className="automation-section" aria-labelledby="automation-heading">
-        <div className="content-block">
-          <h2 id="automation-heading" className="heading">
-            {words.map((word, index) => (
-              <FadeUp
-                as="span"
-                y={32}
-                delay={0.15 + index * 0.08}
-                key={`${word}-${index}`}
-              >
-                {word}
-              </FadeUp>
-            ))}
-          </h2>
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col px-5 py-5 sm:px-8 sm:py-7 lg:px-10 xl:px-8">
+        <nav className="flex items-center justify-between" aria-label="Main navigation">
+          <Brand />
 
-          <FadeUp as="p" className="subtext" delay={0.9}>
-            We provide all-in-one AI automation services in one place.
-          </FadeUp>
-        </div>
-      </section>
+          <div className="hidden items-center rounded-full border border-gray-700/90 bg-black/10 px-2 py-1 backdrop-blur-[2px] lg:flex">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(/ /g, '-')}`}
+                className="rounded-full px-3 py-2 text-sm text-white/80 transition-colors duration-300 hover:text-white xl:px-4"
+              >
+                {link}
+              </a>
+            ))}
+            <a
+              href="#contact-us"
+              className="group inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm text-white/80 transition-colors duration-300 hover:text-white xl:px-4"
+            >
+              Contact us
+              <ArrowUpRight
+                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
+
+          <button
+            type="button"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/30 text-white transition-colors hover:border-white/60 hover:bg-white/10 lg:hidden"
+            onClick={() => setMenuOpen((isOpen) => !isOpen)}
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </nav>
+
+        {menuOpen && (
+          <div className="absolute left-5 right-5 top-[76px] z-20 rounded-3xl border border-white/15 bg-black/90 p-3 backdrop-blur-xl sm:left-8 sm:right-8 lg:hidden">
+            {[...NAV_LINKS, 'Contact us'].map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(/ /g, '-')}`}
+                className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link}
+                {link === 'Contact us' && <ArrowUpRight className="h-4 w-4" aria-hidden="true" />}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <section className="mt-10 grid grid-cols-1 gap-3 sm:mt-12 lg:mt-14 lg:grid-cols-2 lg:gap-12" aria-label="Program outcomes">
+          <p className="max-w-xl text-sm leading-relaxed text-white/80 md:text-base">
+            We deliver transformative programs that empower emerging product designers with
+            cutting-edge expertise and vision to thrive globally.
+          </p>
+          <p className="text-sm leading-relaxed text-white/80 md:text-base lg:justify-self-end lg:text-right">
+            8000+ Talented Designers Launched !
+          </p>
+        </section>
+
+        <section className="flex flex-1 flex-col items-center justify-center pb-8 pt-8 text-center sm:pb-12 lg:pb-16" aria-labelledby="hero-heading">
+          <p className="mb-4 text-xs uppercase tracking-tight text-white/80 md:mb-6 md:text-sm">
+            Seats for Next Program Opening Soon
+          </p>
+
+          <h1
+            id="hero-heading"
+            className="text-5xl font-medium leading-[0.85] tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+          >
+            <span className="block text-white">Become</span>
+            <ShinyText className="block" speed={3} gradientAngle={100}>
+              Product Leader.
+            </ShinyText>
+          </h1>
+
+          <a
+            href="#apply"
+            className="group mt-8 inline-flex items-center gap-3 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-gray-900 md:mt-10 md:px-8 md:py-4 md:text-base"
+          >
+            Apply for Next Enrollment
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </a>
+        </section>
+      </div>
     </main>
   );
 }

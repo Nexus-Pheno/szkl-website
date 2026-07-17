@@ -1,4 +1,4 @@
-@import url('https://db.onlinewebfonts.com/c/e66905e07608167a84e6ad52f638c3c6?family=Helvetica+Now+Var');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,7 +8,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Helvetica Now Var', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #000;
 }
 
 html,
@@ -19,70 +23,28 @@ body,
 }
 
 body {
+  min-width: 320px;
+  overflow-x: hidden;
   background: #000;
+  font-family: 'Inter', sans-serif;
 }
 
-.page-shell {
-  min-height: 100vh;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-  pointer-events: none;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.automation-section {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  padding: 70px 32px 32px;
-}
-
-.content-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  max-width: 720px;
-  min-width: 0;
-}
-
-.heading {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25em;
-  margin: 0;
-  color: #fff;
-  font-size: clamp(26px, 3vw, 42px);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-.heading > span {
-  display: inline-block;
-}
-
-.subtext {
-  max-width: 260px;
-  margin: 24px 0 0;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 14px;
-  line-height: 1.65;
-}
-
-@media (max-width: 900px) {
-  .automation-section {
-    padding: 90px 18px 32px;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
