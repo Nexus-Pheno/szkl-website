@@ -87,11 +87,6 @@ function App() {
         <div className="hero-shell relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col px-5 py-5 sm:px-8 sm:py-7 lg:px-10 xl:px-8">
           <SiteHeader language={language} onLanguageChange={setLanguage} />
 
-          <div className="mt-7 flex items-center justify-between gap-6 border-t border-white/15 pt-4 text-[10px] font-medium uppercase tracking-[0.18em] text-white/45 sm:mt-9 sm:text-xs">
-            <span>{copy.hero.company}</span>
-            <span className="text-right">{copy.hero.location}</span>
-          </div>
-
           <motion.div
             className="mt-auto grid min-w-0 gap-8 pb-8 pt-24 lg:grid-cols-[minmax(0,1fr)_310px] lg:items-end lg:gap-14 lg:pb-12"
             style={{

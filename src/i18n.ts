@@ -13,8 +13,6 @@ export const COPY = {
     experiencePulse: 'Experience Pulse',
     motionLine: 'EVIDENCE  ·  EXPERIMENTS  ·  DECISIONS  ·  LEARNING',
     hero: {
-      company: 'Company behind Pulse',
-      location: 'Shenzhen · Scientific intelligence',
       body: 'We build trusted intelligence systems that turn scientific evidence, experiments, and decisions into compounding advantage.',
       explore: 'Explore SZKL',
     },
@@ -140,8 +138,6 @@ export const COPY = {
     experiencePulse: '体验 Pulse',
     motionLine: '证据  ·  实验  ·  决策  ·  学习',
     hero: {
-      company: 'Pulse 背后的公司',
-      location: '深圳 · 科研智能',
       body: '我们构建可信的科研智能系统，将科学证据、实验与决策转化为持续积累的竞争优势。',
       explore: '探索 SZKL',
     },
