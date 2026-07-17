@@ -93,17 +93,13 @@ function App() {
           <SiteHeader language={language} onLanguageChange={setLanguage} />
 
           <motion.div
-            className="mt-auto grid min-w-0 gap-8 pb-8 pt-24 lg:grid-cols-[minmax(0,1fr)_310px] lg:items-end lg:gap-14 lg:pb-12"
+            className="my-auto grid min-w-0 gap-8 py-10 lg:grid-cols-[minmax(0,1fr)_310px] lg:items-center lg:gap-14 lg:py-12"
             style={{
               y: shouldReduceMotion ? 0 : heroContentY,
               opacity: shouldReduceMotion ? 1 : heroContentOpacity,
             }}
           >
             <div className="min-w-0">
-              <FadeUp as="p" className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-[#c7cdff]">
-                <span className="h-2 w-2 rounded-full bg-[#9ba7ff] shadow-[0_0_20px_rgba(155,167,255,0.95)]" />
-                {PULSE_LOCKUP.brand}
-              </FadeUp>
               <FadeUp
                 as="h1"
                 delay={0.08}
