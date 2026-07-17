@@ -233,7 +233,12 @@ function App() {
                 <span>{copy.ecosystem.pulseLabel}</span>
               </div>
               <div className="relative z-10">
-                <h3 className="text-5xl font-medium tracking-[-0.055em]">Pulse</h3>
+                <img
+                  src="/pulse-logo-official.png"
+                  alt="Pulse"
+                  className="w-[118px] object-contain sm:w-[132px]"
+                  draggable="false"
+                />
                 <p className="mt-5 text-base leading-relaxed text-white/72">
                   {copy.ecosystem.pulseBody}
                 </p>
@@ -255,7 +260,21 @@ function App() {
                 <span className="inline-flex items-center gap-2"><LockKeyhole className="h-3.5 w-3.5" aria-hidden="true" /> {copy.ecosystem.phenoLabel}</span>
               </div>
               <div>
-                <h3 className="text-5xl font-medium tracking-[-0.055em]">Pheno</h3>
+                <div className="flex items-center gap-4">
+                  <img
+                    src="/pheno-icon-official.png"
+                    alt=""
+                    className="h-12 w-12 shrink-0 object-contain"
+                    aria-hidden="true"
+                    draggable="false"
+                  />
+                  <img
+                    src="/pheno-wordmark-official.png"
+                    alt="Pheno"
+                    className="w-[168px] object-contain sm:w-[182px]"
+                    draggable="false"
+                  />
+                </div>
                 <p className="mt-5 text-base leading-relaxed text-black/58">
                   {copy.ecosystem.phenoBody}
                 </p>
@@ -321,16 +340,25 @@ function App() {
           style={{ y: shouldReduceMotion ? 0 : pulseOrbY }}
           aria-hidden="true"
         />
-        <div className="relative mx-auto grid max-w-7xl min-w-0 gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.75fr)] lg:gap-24">
+        <div className="relative mx-auto grid max-w-7xl min-w-0 gap-16 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,0.5fr)] lg:gap-16">
           <div className="min-w-0">
-            <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-[#aab3ff]">
-              {copy.pulse.label}
+            <FadeUp y={24} scale={0.94} blur={6} className="mb-8">
+              <img
+                src="/pulse-logo-official.png"
+                alt=""
+                className="w-[94px] object-contain sm:w-[112px]"
+                aria-hidden="true"
+                draggable="false"
+              />
             </FadeUp>
-            <FadeUp as="h2" y={30} className="mt-6 max-w-4xl text-5xl font-medium leading-[0.92] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
-              {copy.pulse.title}
+            <FadeUp as="p" className="text-xs font-semibold uppercase tracking-[0.28em] text-[#aab3ff]">
+              PULSE
             </FadeUp>
-            <FadeUp as="p" delay={0.1} className="mt-10 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg">
-              {copy.pulse.intro}
+            <FadeUp as="h2" y={30} className="mt-6 max-w-5xl text-5xl font-medium leading-[0.92] tracking-[-0.055em] sm:text-7xl">
+              Make Knowledge Count.
+            </FadeUp>
+            <FadeUp as="p" delay={0.1} className="mt-10 max-w-3xl text-base leading-relaxed text-white/62 sm:text-lg sm:leading-relaxed">
+              Capture what you learn. Prove what you know. Build on what came before.
             </FadeUp>
             <FadeUp delay={0.16}>
               <a
