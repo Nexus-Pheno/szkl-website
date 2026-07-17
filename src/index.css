@@ -130,9 +130,100 @@ a {
 .pulse-card::before,
 .pulse-card::after {
   position: absolute;
+  z-index: 0;
   content: '';
   border-radius: 9999px;
   pointer-events: none;
+}
+
+.ecosystem-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  backface-visibility: hidden;
+  transition:
+    border-color 450ms ease,
+    box-shadow 450ms ease,
+    filter 450ms ease;
+  will-change: transform;
+}
+
+.ecosystem-card > *:not(.ecosystem-card-sheen) {
+  position: relative;
+  z-index: 1;
+}
+
+.ecosystem-card-sheen {
+  position: absolute;
+  z-index: 0;
+  inset: -45% -58%;
+  content: '';
+  transform: translateX(-62%) rotate(9deg);
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.16) 49.5%,
+    transparent 61%
+  );
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: ecosystem-card-sheen 8.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.ecosystem-card-pulse .ecosystem-card-sheen {
+  animation-delay: -5.8s;
+}
+
+.ecosystem-card-pheno .ecosystem-card-sheen {
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(111, 143, 68, 0.14) 49.5%,
+    transparent 61%
+  );
+  mix-blend-mode: multiply;
+  animation-delay: -2.9s;
+}
+
+.ecosystem-card img {
+  transition: filter 450ms ease;
+}
+
+.ecosystem-card:focus-within img {
+  filter: brightness(1.06) saturate(1.04);
+}
+
+.ecosystem-card-company:focus-within {
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 28px 76px -44px rgba(151, 162, 255, 0.58);
+}
+
+.ecosystem-card-pulse:focus-within {
+  box-shadow: 0 30px 84px -42px rgba(89, 103, 255, 0.72);
+}
+
+.ecosystem-card-pheno:focus-within {
+  box-shadow: 0 30px 78px -46px rgba(105, 139, 54, 0.54);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ecosystem-card:hover img {
+    filter: brightness(1.06) saturate(1.04);
+  }
+
+  .ecosystem-card-company:hover {
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow: 0 28px 76px -44px rgba(151, 162, 255, 0.58);
+  }
+
+  .ecosystem-card-pulse:hover {
+    box-shadow: 0 30px 84px -42px rgba(89, 103, 255, 0.72);
+  }
+
+  .ecosystem-card-pheno:hover {
+    box-shadow: 0 30px 78px -46px rgba(105, 139, 54, 0.54);
+  }
 }
 
 .ambient-orb {
@@ -231,6 +322,22 @@ a {
   }
   100% {
     background-position: 90% 90%;
+  }
+}
+
+@keyframes ecosystem-card-sheen {
+  0%,
+  24% {
+    opacity: 0;
+    transform: translateX(-62%) rotate(9deg);
+  }
+  35% {
+    opacity: 0.72;
+  }
+  48%,
+  100% {
+    opacity: 0;
+    transform: translateX(62%) rotate(9deg);
   }
 }
 
