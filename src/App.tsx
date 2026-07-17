@@ -10,7 +10,7 @@ import {
 import { FadeUp } from './components/FadeUp';
 import { SiteHeader } from './components/SiteHeader';
 import { COPY, type Language } from './i18n';
-import { PHENO_PORTAL_URL, PULSE_URL, VIDEO_SOURCE } from './site';
+import { PHENO_PORTAL_URL, PULSE_LOCKUP, PULSE_URL, VIDEO_SOURCE } from './site';
 
 function ExternalArrow() {
   return (
@@ -100,28 +100,27 @@ function App() {
             }}
           >
             <div className="min-w-0">
-              <FadeUp as="p" className="mb-6 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.24em] text-white/65">
+              <FadeUp as="p" className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-[#c7cdff]">
                 <span className="h-2 w-2 rounded-full bg-[#9ba7ff] shadow-[0_0_20px_rgba(155,167,255,0.95)]" />
-                {copy.hero.eyebrow}
+                {PULSE_LOCKUP.brand}
               </FadeUp>
               <FadeUp
                 as="h1"
                 delay={0.08}
                 y={38}
-                className={`max-w-[1050px] font-medium ${
-                  language === 'zh'
-                    ? 'text-[clamp(3.9rem,10.5vw,9.2rem)] leading-[0.9] tracking-[-0.07em]'
-                    : 'text-[clamp(3.25rem,16.6vw,4.15rem)] leading-[0.77] tracking-[-0.075em] sm:text-[clamp(4.15rem,11.7vw,10.2rem)] lg:text-[clamp(5.5rem,10.5vw,9.2rem)] xl:text-[clamp(4.15rem,11.5vw,10rem)]'
-                }`}
+                className="max-w-[980px] text-[clamp(3.25rem,13vw,4.3rem)] font-medium leading-[0.86] tracking-[-0.07em] sm:text-[clamp(4.6rem,8.2vw,7.6rem)]"
+                ariaLabel={PULSE_LOCKUP.headline}
               >
-                {copy.hero.lines.map((line, index) => (
-                  <span
-                    key={line}
-                    className={index === copy.hero.lines.length - 1 ? 'hero-accent block' : 'block'}
-                  >
-                    {line}
-                  </span>
-                ))}
+                <span className="block">Make Knowledge{' '}</span>
+                <span className="hero-accent block">Count.</span>
+              </FadeUp>
+              <FadeUp
+                as="p"
+                delay={0.16}
+                y={28}
+                className="mt-7 max-w-3xl text-[clamp(1.05rem,2.2vw,1.5rem)] leading-[1.42] text-white/72"
+              >
+                {PULSE_LOCKUP.supporting}
               </FadeUp>
             </div>
 
@@ -394,13 +393,13 @@ function App() {
               />
             </FadeUp>
             <FadeUp as="p" className="text-xs font-semibold uppercase tracking-[0.28em] text-[#aab3ff]">
-              PULSE
+              {copy.pulse.label}
             </FadeUp>
             <FadeUp as="h2" y={30} className="mt-6 max-w-5xl text-[clamp(2.65rem,13vw,3rem)] font-medium leading-[0.92] tracking-[-0.055em] sm:text-7xl">
-              Make Knowledge Count.
+              {copy.pulse.title}
             </FadeUp>
             <FadeUp as="p" delay={0.1} className="mt-10 max-w-3xl text-base leading-relaxed text-white/62 sm:text-lg sm:leading-relaxed">
-              Capture what you learn. Prove what you know. Build on what came before.
+              {copy.pulse.intro}
             </FadeUp>
             <FadeUp delay={0.16}>
               <a

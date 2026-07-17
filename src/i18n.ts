@@ -15,8 +15,6 @@ export const COPY = {
     hero: {
       company: 'Company behind Pulse',
       location: 'Shenzhen · Scientific intelligence',
-      eyebrow: 'Shenzhen Knowledge Labs',
-      lines: ['SCIENCE', 'SHOULD', 'REMEMBER.'],
       body: 'We build trusted intelligence systems that turn scientific evidence, experiments, and decisions into compounding advantage.',
       explore: 'Explore SZKL',
     },
@@ -144,8 +142,6 @@ export const COPY = {
     hero: {
       company: 'Pulse 背后的公司',
       location: '深圳 · 科研智能',
-      eyebrow: '深圳知识实验室',
-      lines: ['让科学', '记住每次', '进步。'],
       body: '我们构建可信的科研智能系统，将科学证据、实验与决策转化为持续积累的竞争优势。',
       explore: '探索 SZKL',
     },

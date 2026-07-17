@@ -11,6 +11,7 @@ type FadeUpProps = {
   blur?: number;
   className?: string;
   id?: string;
+  ariaLabel?: string;
   style?: CSSProperties;
   as?: 'div' | 'section' | 'span' | 'h1' | 'h2' | 'h3' | 'p' | 'nav';
   once?: boolean;
@@ -26,6 +27,7 @@ export function FadeUp({
   blur = 4,
   className,
   id,
+  ariaLabel,
   style,
   as = 'div',
   once = true,
@@ -37,6 +39,7 @@ export function FadeUp({
     <Tag
       className={className}
       id={id}
+      aria-label={ariaLabel}
       style={style}
       initial={
         shouldReduceMotion

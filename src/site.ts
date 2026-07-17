@@ -4,6 +4,12 @@ export const VIDEO_SOURCE =
 export const PULSE_URL = 'https://pulse.szkl.com';
 export const PHENO_PORTAL_URL = 'https://pheno.szkl.com';
 
+export const PULSE_LOCKUP = {
+  brand: 'PULSE',
+  headline: 'Make Knowledge Count.',
+  supporting: 'Capture what you learn. Prove what you know. Build on what came before.',
+} as const;
+
 export const NAV_LINKS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
