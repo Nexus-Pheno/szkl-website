@@ -195,7 +195,7 @@ function App() {
             </FadeUp>
           </div>
           <div className="min-w-0">
-            <FadeUp as="h2" y={30} className="max-w-5xl text-4xl font-medium leading-[1.02] tracking-[-0.048em] sm:text-6xl lg:text-7xl">
+            <FadeUp as="h2" y={30} mobileX={14} className="max-w-5xl text-4xl font-medium leading-[1.02] tracking-[-0.048em] sm:text-6xl lg:text-7xl">
               {copy.about.title}
             </FadeUp>
             <div className="mt-12 grid gap-8 border-t border-black/20 pt-8 md:grid-cols-2">
@@ -240,7 +240,7 @@ function App() {
           </div>
 
           <div className="mt-16 grid min-w-0 gap-3 lg:grid-cols-3">
-            <FadeUp y={72} scale={0.92} rotate={-1.5} blur={10} className="h-full min-w-0">
+            <FadeUp y={72} scale={0.92} rotate={-1.5} blur={10} mobileX={-18} className="h-full min-w-0">
               <motion.article
                 className="ecosystem-card ecosystem-card-company grid h-full min-h-[440px] min-w-0 grid-rows-[auto_112px_minmax(0,1fr)_auto] gap-y-6 rounded-[2rem] border border-white/14 bg-black p-7 sm:p-9"
                 whileHover={shouldReduceMotion ? undefined : { y: -7, scale: 1.012 }}
@@ -277,7 +277,7 @@ function App() {
               </motion.article>
             </FadeUp>
 
-            <FadeUp delay={0.08} y={72} scale={0.9} rotate={1.5} blur={10} className="h-full min-w-0">
+            <FadeUp delay={0.08} y={72} scale={0.9} rotate={1.5} blur={10} mobileX={18} className="h-full min-w-0">
               <motion.article
                 className="ecosystem-card ecosystem-card-pulse pulse-card grid h-full min-h-[440px] min-w-0 grid-rows-[auto_112px_minmax(0,1fr)_auto] gap-y-6 overflow-hidden rounded-[2rem] p-7 text-white sm:p-9"
                 whileHover={shouldReduceMotion ? undefined : { y: -7, scale: 1.012 }}
@@ -314,7 +314,7 @@ function App() {
               </motion.article>
             </FadeUp>
 
-            <FadeUp delay={0.16} y={72} scale={0.92} rotate={-1} blur={10} className="h-full min-w-0">
+            <FadeUp delay={0.16} y={72} scale={0.92} rotate={-1} blur={10} mobileX={-18} className="h-full min-w-0">
               <motion.article
                 className="ecosystem-card ecosystem-card-pheno grid h-full min-h-[440px] min-w-0 grid-rows-[auto_112px_minmax(0,1fr)_auto] gap-y-6 rounded-[2rem] bg-[#f2f1ec] p-7 text-black sm:p-9"
                 whileHover={shouldReduceMotion ? undefined : { y: -7, scale: 1.012 }}
@@ -377,7 +377,7 @@ function App() {
 
           <div className="mt-16 grid min-w-0 gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
             {copy.culture.values.map((value, index) => (
-              <FadeUp key={value.title} delay={(index % 4) * 0.05} y={46} scale={0.95} blur={8} className="relative min-w-0 border-t border-black/15 py-7 sm:py-8 lg:min-h-[230px]">
+              <FadeUp key={value.title} delay={(index % 4) * 0.05} y={46} scale={0.95} blur={8} mobileX={index % 2 === 0 ? -16 : 16} className="relative min-w-0 border-t border-black/15 py-7 sm:py-8 lg:min-h-[230px]">
                 <motion.span
                   className="absolute left-0 top-[-1px] h-[2px] w-full origin-left bg-[linear-gradient(90deg,#5967ff_0%,rgba(89,103,255,0.08)_100%)]"
                   initial={shouldReduceMotion ? false : { scaleX: 0 }}
@@ -438,7 +438,7 @@ function App() {
 
           <div className="min-w-0 border-t border-white/20">
             {copy.pulse.directions.map((item, index) => (
-              <FadeUp key={item.title} delay={index * 0.05} y={42} scale={0.975} blur={7} className="grid min-w-0 grid-cols-[42px_minmax(0,1fr)] gap-5 border-b border-white/15 py-7">
+              <FadeUp key={item.title} delay={index * 0.05} y={42} scale={0.975} blur={7} mobileX={index % 2 === 0 ? -14 : 14} className="grid min-w-0 grid-cols-[42px_minmax(0,1fr)] gap-5 border-b border-white/15 py-7">
                 <div className="pt-1 text-xs text-white/30">
                   {String(index + 1).padStart(2, '0')}
                   <motion.span
@@ -490,6 +490,7 @@ function App() {
                 y={50}
                 scale={0.95}
                 blur={8}
+                mobileX={index % 2 === 0 ? -14 : 14}
                 className={`min-w-0 border-b border-black/15 py-7 sm:py-8 md:min-h-[220px] md:border-r md:px-5 md:last:border-r-0 ${
                   index % 2 === 0 ? 'md:pl-0' : 'md:border-r-0 md:pr-0'
                 } lg:min-h-[240px] lg:border-b-0 lg:border-r lg:px-5 ${
@@ -528,7 +529,7 @@ function App() {
           <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-white/38">
             {copy.closing.label}
           </FadeUp>
-          <FadeUp as="h2" y={30} className="mt-6 max-w-6xl text-[clamp(2.65rem,12.8vw,3rem)] font-medium leading-[0.9] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
+          <FadeUp as="h2" y={30} mobileX={-14} className="mt-6 max-w-6xl text-[clamp(2.65rem,12.8vw,3rem)] font-medium leading-[0.9] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
             {copy.closing.title}
           </FadeUp>
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">

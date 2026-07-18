@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import type { CSSProperties, ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 
 type FadeUpProps = {
   children: ReactNode;
@@ -9,6 +9,7 @@ type FadeUpProps = {
   scale?: number;
   rotate?: number;
   blur?: number;
+  mobileX?: number;
   className?: string;
   id?: string;
   ariaLabel?: string;
@@ -25,6 +26,7 @@ export function FadeUp({
   scale = 1,
   rotate = 0,
   blur = 4,
+  mobileX = 0,
   className,
   id,
   ariaLabel,
@@ -34,6 +36,23 @@ export function FadeUp({
 }: FadeUpProps) {
   const Tag = motion[as];
   const shouldReduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const updateMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateMobile();
+    mediaQuery.addEventListener('change', updateMobile);
+    return () => mediaQuery.removeEventListener('change', updateMobile);
+  }, []);
+
+  const revealY = isMobile ? Math.max(y, 34) : y;
+  const revealScale = isMobile ? Math.min(scale, 0.975) : scale;
+  const revealBlur = isMobile ? Math.max(blur, 6) : blur;
+  const revealDuration = isMobile ? Math.max(duration, 0.78) : duration;
 
   return (
     <Tag
@@ -44,12 +63,19 @@ export function FadeUp({
       initial={
         shouldReduceMotion
           ? false
-          : { opacity: 0, y, scale, rotate, filter: `blur(${blur}px)` }
+          : {
+              opacity: 0,
+              x: isMobile ? mobileX : 0,
+              y: revealY,
+              scale: revealScale,
+              rotate,
+              filter: `blur(${revealBlur}px)`,
+            }
       }
-      whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0, filter: 'blur(0px)' }}
-      viewport={{ once, amount: 0.2 }}
+      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0, filter: 'blur(0px)' }}
+      viewport={{ once, amount: isMobile ? 0.14 : 0.2 }}
       transition={{
-        duration: shouldReduceMotion ? 0 : duration,
+        duration: shouldReduceMotion ? 0 : revealDuration,
         delay: shouldReduceMotion ? 0 : delay,
         ease: [0.22, 1, 0.36, 1],
       }}
