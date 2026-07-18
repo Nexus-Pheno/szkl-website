@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ArrowDown, ArrowDownRight, ArrowUpRight, LockKeyhole } from 'lucide-react';
+import { ArrowDown, ArrowDownRight, ArrowUp, ArrowUpRight, LockKeyhole } from 'lucide-react';
 import {
+  AnimatePresence,
   motion,
+  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -25,6 +27,7 @@ function App() {
   const [language, setLanguage] = useState<Language>(() =>
     window.localStorage.getItem('szkl-language') === 'zh' ? 'zh' : 'en',
   );
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const copy = COPY[language];
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
@@ -46,6 +49,10 @@ function App() {
   const aboutOrbY = useTransform(scrollYProgress, [0.05, 0.34], [-120, 180]);
   const cultureOrbY = useTransform(scrollYProgress, [0.36, 0.72], [-100, 210]);
   const pulseOrbY = useTransform(scrollYProgress, [0.5, 0.9], [-80, 170]);
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    setShowBackToTop(latest >= 0.92);
+  });
 
   useEffect(() => {
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
@@ -565,6 +572,31 @@ function App() {
           </footer>
         </div>
       </section>
+
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            type="button"
+            className="back-to-top group z-[90] inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 bg-black/68 px-4 py-3 text-xs font-medium text-white/82 shadow-[0_12px_34px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-colors hover:border-white/38 hover:bg-black/82 hover:text-white"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: shouldReduceMotion ? 'auto' : 'smooth',
+              })
+            }
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 18, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 12, scale: 0.97 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+            aria-label={copy.backToTop}
+          >
+            <span>{copy.backToTop}</span>
+            <ArrowUp className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

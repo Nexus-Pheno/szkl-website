@@ -87,6 +87,12 @@ video {
   box-shadow: 0 0 18px rgba(115, 130, 255, 0.55);
 }
 
+.back-to-top {
+  position: fixed;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+
 .hero-keyword {
   padding-bottom: 0.14em;
   padding-right: 0.06em;
