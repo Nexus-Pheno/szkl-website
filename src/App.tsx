@@ -28,6 +28,7 @@ function App() {
     window.localStorage.getItem('szkl-language') === 'zh' ? 'zh' : 'en',
   );
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [backToTopSurface, setBackToTopSurface] = useState<'dark' | 'light'>('dark');
   const copy = COPY[language];
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
@@ -51,7 +52,16 @@ function App() {
   const pulseOrbY = useTransform(scrollYProgress, [0.5, 0.9], [-80, 170]);
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    setShowBackToTop(latest >= 0.92);
+    setShowBackToTop(latest > 0 && window.scrollY >= window.innerHeight * 0.9);
+
+    const surface = document
+      .elementsFromPoint(document.documentElement.clientWidth - 40, window.innerHeight - 112)
+      .map((element) => element.closest<HTMLElement>('[data-surface]')?.dataset.surface)
+      .find((value): value is 'dark' | 'light' => value === 'dark' || value === 'light');
+
+    if (surface) {
+      setBackToTopSurface(surface);
+    }
   });
 
   useEffect(() => {
@@ -71,7 +81,7 @@ function App() {
         style={{ scaleX: smoothProgress }}
         aria-hidden="true"
       />
-      <section id="home" className="relative min-h-[100svh] scroll-mt-0 overflow-hidden bg-black text-white">
+      <section id="home" data-surface="dark" className="relative min-h-[100svh] scroll-mt-0 overflow-hidden bg-black text-white">
         <motion.video
           className="hero-video absolute inset-0 h-full w-full scale-[1.02] object-cover"
           src={VIDEO_SOURCE}
@@ -186,7 +196,7 @@ function App() {
         </div>
       </section>
 
-      <section id="about" className="relative scroll-mt-0 overflow-hidden px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+      <section id="about" data-surface="light" className="relative scroll-mt-0 overflow-hidden px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
         <motion.div
           className="ambient-orb pointer-events-none absolute -right-44 top-20 h-[480px] w-[480px] rounded-full bg-[#6d79ff]/10 blur-[95px]"
           style={{ y: shouldReduceMotion ? 0 : aboutOrbY }}
@@ -218,6 +228,7 @@ function App() {
       </section>
 
       <section
+        data-surface="dark"
         className="kinetic-marquee relative overflow-hidden border-y border-white/10 bg-[#0c0d13] py-7 text-white sm:py-9"
         aria-label={copy.motionLine}
       >
@@ -235,7 +246,7 @@ function App() {
         </motion.div>
       </section>
 
-      <section id="ecosystem" className="scroll-mt-0 bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-36">
+      <section id="ecosystem" data-surface="dark" className="scroll-mt-0 bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-36">
         <div className="mx-auto max-w-7xl">
           <div className="grid min-w-0 gap-8 lg:grid-cols-2 lg:items-end">
             <FadeUp as="p" className="text-xs font-medium uppercase tracking-[0.22em] text-white/42">
@@ -361,7 +372,7 @@ function App() {
         </div>
       </section>
 
-      <section id="culture" className="relative scroll-mt-0 overflow-hidden px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+      <section id="culture" data-surface="light" className="relative scroll-mt-0 overflow-hidden px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
         <motion.div
           className="ambient-orb pointer-events-none absolute -left-52 top-24 h-[560px] w-[560px] rounded-full bg-[#8290ff]/9 blur-[115px]"
           style={{ y: shouldReduceMotion ? 0 : cultureOrbY }}
@@ -402,7 +413,7 @@ function App() {
         </div>
       </section>
 
-      <section id="pulse" className="relative scroll-mt-0 overflow-hidden bg-[#111318] px-5 py-20 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+      <section id="pulse" data-surface="dark" className="relative scroll-mt-0 overflow-hidden bg-[#111318] px-5 py-20 text-white sm:px-8 sm:py-32 lg:px-10 lg:py-40">
         <motion.div
           className="ambient-orb pointer-events-none absolute -right-48 top-20 h-[680px] w-[680px] rounded-full bg-[#4d5bff]/18 blur-[120px]"
           style={{ y: shouldReduceMotion ? 0 : pulseOrbY }}
@@ -467,7 +478,7 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-36" aria-labelledby="learning-loop-title">
+      <section data-surface="light" className="bg-white px-5 py-20 sm:px-8 sm:py-32 lg:px-10 lg:py-36" aria-labelledby="learning-loop-title">
         <div className="mx-auto max-w-7xl">
           <div className="flex min-w-0 items-end justify-between gap-8">
             <div className="min-w-0">
@@ -523,7 +534,7 @@ function App() {
         </div>
       </section>
 
-      <section id="contact" className="closing-stage relative scroll-mt-0 overflow-hidden bg-black px-5 pb-8 pt-20 text-white sm:px-8 sm:pt-32 lg:px-10 lg:pt-40">
+      <section id="contact" data-surface="dark" className="closing-stage relative scroll-mt-0 overflow-hidden bg-black px-5 pb-8 pt-20 text-white sm:px-8 sm:pt-32 lg:px-10 lg:pt-40">
         <motion.div
           className="pointer-events-none absolute -left-44 top-20 h-[560px] w-[560px] rounded-full bg-[#5967ff]/18 blur-[120px]"
           initial={shouldReduceMotion ? false : { scale: 0.72, opacity: 0 }}
@@ -577,7 +588,11 @@ function App() {
         {showBackToTop && (
           <motion.button
             type="button"
-            className="back-to-top group z-[90] inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 bg-black/68 px-4 py-3 text-xs font-medium text-white/82 shadow-[0_12px_34px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-colors hover:border-white/38 hover:bg-black/82 hover:text-white"
+            className={`back-to-top group z-[90] inline-flex h-[62px] w-[42px] flex-col items-center justify-center gap-1 rounded-full border px-0 py-2 text-[9px] font-medium uppercase tracking-[0.14em] shadow-[0_10px_28px_rgba(0,0,0,0.16)] backdrop-blur-xl transition-colors ${
+              backToTopSurface === 'dark'
+                ? 'border-white/[0.78] bg-white/[0.92] text-black/[0.82] hover:bg-white hover:text-black'
+                : 'border-black/[0.18] bg-black/[0.84] text-white/[0.86] hover:bg-black hover:text-white'
+            }`}
             onClick={() =>
               window.scrollTo({
                 top: 0,
@@ -592,8 +607,8 @@ function App() {
             whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
             aria-label={copy.backToTop}
           >
-            <span>{copy.backToTop}</span>
-            <ArrowUp className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true" />
+            <ArrowUp className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true" />
+            <span>{copy.backToTopShort}</span>
           </motion.button>
         )}
       </AnimatePresence>
