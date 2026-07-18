@@ -89,7 +89,9 @@ video {
 
 .hero-keyword {
   padding-bottom: 0.14em;
+  padding-right: 0.06em;
   margin-bottom: -0.14em;
+  margin-right: -0.06em;
   background: linear-gradient(
     105deg,
     #ffffff 0%,
