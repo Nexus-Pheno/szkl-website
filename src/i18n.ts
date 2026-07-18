@@ -122,7 +122,7 @@ export const COPY = {
     closing: {
       label: 'The future we are building',
       title: 'Science should remember. Teams should learn. Better decisions should compound.',
-      location: 'Shenzhen · China',
+      location: 'Proudly Shenzhen · China',
       motto: 'We don’t wait. We don’t blame. We build.',
     },
   },
@@ -240,7 +240,7 @@ export const COPY = {
     closing: {
       label: '我们正在构建的未来',
       title: '让科学拥有记忆，让团队持续学习，让更好的决策不断积累。',
-      location: '中国 · 深圳',
+      location: '自豪地扎根深圳 · 中国',
       motto: '不等待，不推责，直接行动。',
     },
   },
