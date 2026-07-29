@@ -1,4 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('@fontsource/inter/files/inter-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('@fontsource/inter/files/inter-latin-500-normal.woff2') format('woff2');
+}
 
 @tailwind base;
 @tailwind components;
@@ -62,6 +76,13 @@ video {
 
 .hero-video {
   filter: saturate(1.14) contrast(1.06) brightness(0.86);
+}
+
+.hero-stage {
+  background:
+    radial-gradient(circle at 78% 32%, rgba(46, 92, 160, 0.76), transparent 42%),
+    radial-gradient(circle at 18% 45%, rgba(73, 59, 144, 0.72), transparent 48%),
+    linear-gradient(145deg, #060712 0%, #10142e 48%, #030409 100%);
 }
 
 .brand-logo-on-dark {

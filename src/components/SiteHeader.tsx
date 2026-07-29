@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { COPY, type Language } from '../i18n';
 import { NAV_LINKS, PULSE_URL } from '../site';
@@ -45,7 +45,7 @@ function LanguageToggle({ language, onLanguageChange }: SiteHeaderProps) {
       <button
         type="button"
         className={`relative z-10 grid h-11 w-11 place-items-center rounded-full text-[10px] font-semibold tracking-[0.08em] transition-colors ${
-          language === 'en' ? 'text-black' : 'text-white/58 hover:text-white'
+          language === 'en' ? 'text-black' : 'text-white/[0.58] hover:text-white'
         }`}
         onClick={() => onLanguageChange('en')}
         aria-label={copy.languageEnglish}
@@ -57,7 +57,7 @@ function LanguageToggle({ language, onLanguageChange }: SiteHeaderProps) {
       <button
         type="button"
         className={`relative z-10 grid h-11 w-11 place-items-center rounded-full text-xs font-semibold transition-colors ${
-          language === 'zh' ? 'text-black' : 'text-white/58 hover:text-white'
+          language === 'zh' ? 'text-black' : 'text-white/[0.58] hover:text-white'
         }`}
         onClick={() => onLanguageChange('zh')}
         aria-label={copy.languageChinese}
@@ -72,8 +72,25 @@ function LanguageToggle({ language, onLanguageChange }: SiteHeaderProps) {
 
 export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const copy = COPY[language];
   const navigationLabel = language === 'zh' ? '主导航' : 'Main navigation';
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', closeOnEscape);
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [menuOpen]);
 
   return (
     <header className="relative z-50 grid grid-cols-[1fr_auto] items-center gap-2 sm:gap-4 xl:grid-cols-[1fr_auto_1fr]">
@@ -83,14 +100,14 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
         className="hidden items-center rounded-full border border-white/15 bg-black/20 px-2 py-1 shadow-[0_16px_50px_rgba(0,0,0,0.18)] backdrop-blur-md xl:flex"
         aria-label={navigationLabel}
       >
-        {NAV_LINKS.map((link, index) => (
+        {NAV_LINKS.map((link) => (
           <a
-            key={link.label}
+            key={link.key}
             href={link.href}
-            className="group inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 py-3 text-sm text-white/62 transition-colors duration-300 hover:text-white"
+            className="group inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 py-3 text-sm text-white/[0.62] transition-colors duration-300 hover:text-white"
           >
-            {copy.nav[index]}
-            {index === NAV_LINKS.length - 1 && (
+            {copy.nav[link.key]}
+            {link.key === 'explore' && (
               <ArrowUpRight
                 className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden="true"
@@ -115,6 +132,7 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
           />
         </a>
         <button
+          ref={menuButtonRef}
           type="button"
           className="grid h-11 w-11 place-items-center rounded-full border border-white/30 text-white transition-colors hover:border-white/60 hover:bg-white/10 xl:hidden"
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
@@ -140,15 +158,15 @@ export function SiteHeader({ language, onLanguageChange }: SiteHeaderProps) {
           className="absolute left-0 right-0 top-[64px] max-h-[calc(100svh-92px)] overflow-y-auto rounded-3xl border border-white/15 bg-black/95 p-3 shadow-2xl backdrop-blur-xl sm:top-[76px] xl:hidden"
           aria-label={language === 'zh' ? '移动端导航' : 'Mobile navigation'}
         >
-          {NAV_LINKS.map((link, index) => (
+          {NAV_LINKS.map((link) => (
             <a
-              key={link.label}
+              key={link.key}
               href={link.href}
               className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm text-white/75 transition-colors hover:bg-white/10 hover:text-white"
               onClick={() => setMenuOpen(false)}
             >
-              {copy.nav[index]}
-              {index === NAV_LINKS.length - 1 && <ArrowUpRight className="h-4 w-4" aria-hidden="true" />}
+              {copy.nav[link.key]}
+              {link.key === 'explore' && <ArrowUpRight className="h-4 w-4" aria-hidden="true" />}
             </a>
           ))}
           <a

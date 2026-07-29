@@ -14,7 +14,7 @@ export default defineConfig(async () => {
           main: './worker/index.ts',
           assets: {
             binding: 'ASSETS',
-            not_found_handling: 'single-page-application',
+            run_worker_first: true,
           },
         },
       }),

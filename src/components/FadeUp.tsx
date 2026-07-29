@@ -36,8 +36,8 @@ export function FadeUp({
 }: FadeUpProps) {
   const Tag = motion[as];
   const shouldReduceMotion = useReducedMotion();
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
   );
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import './index.css';
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 
 if (path === '/about-us' && !window.location.hash) {
-  window.history.replaceState(null, '', '/#about');
+  window.history.replaceState(null, '', `/${window.location.search}#about`);
 }
 
 document.title = 'SZKL — Scientific Intelligence That Compounds';

@@ -9,7 +9,14 @@ export const COPY = {
     languageLabel: 'Choose website language',
     languageEnglish: 'View in English',
     languageChinese: '切换至中文',
-    nav: ['Home', 'About', 'Culture', 'Pulse', 'Contact'],
+    nav: {
+      home: 'Home',
+      about: 'About',
+      culture: 'Culture',
+      pulse: 'Pulse',
+      explore: 'Explore',
+    },
+    skipToContent: 'Skip to main content',
     backToTop: 'Back to top',
     backToTopShort: 'Top',
     experiencePulse: 'Experience Pulse',
@@ -17,6 +24,8 @@ export const COPY = {
     hero: {
       body: 'We build trusted intelligence systems that turn scientific evidence, experiments, and decisions into compounding advantage.',
       explore: 'Explore SZKL',
+      pauseVideo: 'Pause background video',
+      playVideo: 'Play background video',
     },
     about: {
       label: 'About SZKL',
@@ -130,13 +139,19 @@ export const COPY = {
   },
   zh: {
     metaTitle: 'SZKL — 让科研智能持续积累',
-    metaDescription:
-      '深圳知识实验室是 Pulse 背后的公司，致力于为科研工作构建可信的智能系统。',
+    metaDescription: '深圳知识实验室是 Pulse 背后的公司，致力于为科研工作构建可信的智能系统。',
     brandAlt: 'SZKL — 深圳知识实验室',
     languageLabel: '选择网站语言',
     languageEnglish: '切换至英文',
     languageChinese: '查看中文网站',
-    nav: ['首页', '关于我们', '文化', 'Pulse', '联系'],
+    nav: {
+      home: '首页',
+      about: '关于我们',
+      culture: '文化',
+      pulse: 'Pulse',
+      explore: '探索',
+    },
+    skipToContent: '跳至主要内容',
     backToTop: '返回顶部',
     backToTopShort: '顶部',
     experiencePulse: '体验 Pulse',
@@ -144,13 +159,17 @@ export const COPY = {
     hero: {
       body: '我们构建可信的科研智能系统，将科学证据、实验与决策转化为持续积累的竞争优势。',
       explore: '探索 SZKL',
+      pauseVideo: '暂停背景视频',
+      playVideo: '播放背景视频',
     },
     about: {
       label: '关于 SZKL',
       intro: 'SZKL 是 Pulse 背后的公司和长期发展平台，总部位于深圳，并与 Pheno 协同发展。',
       title: '我们把分散的科研工作，转化为持续学习的可信系统。',
-      mission: '我们的使命，是构建将科学证据转化为更好决策、并让每一次决策沉淀为可复用知识的智能基础设施。',
-      belief: '真正的优势不属于产生最多数据的团队，而属于最善于从每一个来源、每一次实验和每一个结果中学习的团队。',
+      mission:
+        '我们的使命，是构建将科学证据转化为更好决策、并让每一次决策沉淀为可复用知识的智能基础设施。',
+      belief:
+        '真正的优势不属于产生最多数据的团队，而属于最善于从每一个来源、每一次实验和每一个结果中学习的团队。',
     },
     ecosystem: {
       label: 'SZKL 生态系统',
@@ -167,7 +186,8 @@ export const COPY = {
     culture: {
       label: '我们的工作方式',
       title: '文化，就是我们的操作系统。',
-      intro: '我们认同 Pheno 的信念：卓越不是依靠孤立的个人英雄主义，而是来自自律的人、诚实的证据、彼此尊重的协作，以及不断学习的系统。',
+      intro:
+        '我们认同 Pheno 的信念：卓越不是依靠孤立的个人英雄主义，而是来自自律的人、诚实的证据、彼此尊重的协作，以及不断学习的系统。',
       values: [
         {
           title: '主动担当',
@@ -206,7 +226,8 @@ export const COPY = {
     pulse: {
       label: 'Pulse · 面向公众开放',
       title: '从科学证据，到更好的研发决策。',
-      intro: 'Pulse 为 SZKL 提供产品方向：以实用智能连接团队已经掌握的知识、已经尝试的实验、外部世界的变化，以及下一步应该采取的行动。',
+      intro:
+        'Pulse 为 SZKL 提供产品方向：以实用智能连接团队已经掌握的知识、已经尝试的实验、外部世界的变化，以及下一步应该采取的行动。',
       directions: [
         {
           title: '从有用的工作流开始',

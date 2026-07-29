@@ -10,9 +10,11 @@ export const PULSE_LOCKUP = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Culture', href: '#culture' },
-  { label: 'Pulse', href: '#pulse' },
-  { label: 'Contact', href: '#contact' },
-];
+  { key: 'home', href: '#home' },
+  { key: 'about', href: '#about' },
+  { key: 'culture', href: '#culture' },
+  { key: 'pulse', href: '#pulse' },
+  { key: 'explore', href: '#contact' },
+] as const;
+
+export type NavKey = (typeof NAV_LINKS)[number]['key'];
